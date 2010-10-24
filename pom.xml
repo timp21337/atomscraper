@@ -4,6 +4,7 @@
   <groupId>net.pizey</groupId>
   <artifactId>atomscraper</artifactId>
   <name>atomscraper</name>
+  <packaging>war</packaging>
   <!-- HACK the version is set to the Melati version to use :( -->
   <version>0.7.8-RC3-SNAPSHOT</version>
   <url>http://www.paneris.net/atomscraper</url>
