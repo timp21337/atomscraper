@@ -1,0 +1,11 @@
+#if(!$melati.Object) #begin  
+No object in context 
+#end #else #begin 
+#set $melati.Response.ContentType="text/csv" 
+#end
+#foreach $field in $flattenedValues #begin
+"$admin.csvEscaped($field.Name)",#end
+
+
+#foreach $field in $flattenedValues #begin
+"$admin.csvEscaped($field.Value)",#end

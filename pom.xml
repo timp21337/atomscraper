@@ -1,0 +1,387 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.pizey</groupId>
+  <artifactId>atomscraper</artifactId>
+  <name>atomscraper</name>
+  <!-- HACK the version is set to the Melati version to use :( -->
+  <version>0.7.8-RC3-SNAPSHOT</version>
+  <url>http://www.paneris.net/atomscraper</url>
+
+  <ciManagement>
+    <system>Hudson</system>
+    <url>http://hudson.paneris.net/</url>
+  </ciManagement>
+
+  <scm>
+    <connection>
+      scm:cvs:pserver:anonymous@paneris.net:/usr/cvsroot:atomscraper
+    </connection>
+    <developerConnection>
+scm:cvs:ext:timp@paneris.net:/usr/cvsroot:atomscraper
+    </developerConnection>
+
+    <url>
+      http://paneris.net/cgi-bin/cvsweb.cgi/atomscraper/
+    </url>
+  </scm>
+  <mailingLists>
+    <mailingList>
+      <name>Melati Announce</name>
+      <subscribe>
+http://lists.sourceforge.net/lists/listinfo/melati-announce
+      </subscribe>
+      <unsubscribe>
+http://lists.sourceforge.net/lists/listinfo/melati-announce
+      </unsubscribe>
+      <archive>
+http://sourceforge.net/mailarchive/forum.php?forum=melati-announce
+      </archive>
+    </mailingList>
+    <mailingList>
+      <name>Melati Developers</name>
+      <subscribe>
+http://lists.sourceforge.net/lists/listinfo/melati-developers
+      </subscribe>
+      <unsubscribe>
+http://lists.sourceforge.net/lists/listinfo/melati-developers
+      </unsubscribe>
+      <archive>
+http://sourceforge.net/mailarchive/forum.php?forum=melati-developers
+      </archive>
+    </mailingList>
+    <mailingList>
+      <name>Melati Users</name>
+      <subscribe>
+http://lists.sourceforge.net/lists/listinfo/melati-users
+      </subscribe>
+      <unsubscribe>
+http://lists.sourceforge.net/lists/listinfo/melati-users
+      </unsubscribe>
+      <archive>
+http://sourceforge.net/mailarchive/forum.php?forum=melati-users
+      </archive>
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+    <developer>
+      <name>Tim Pizey</name>
+      <id>timp</id>
+      <email>timp At paneris.org</email>
+      <organization>PanEris</organization>
+      <roles>
+        <role>Maintainer</role>
+        <role>Maven maven</role>
+        <role>Developer</role>
+      </roles>
+      <timezone>0</timezone>
+      <url>http://paneris.org/~timp</url>
+    </developer>
+  </developers>
+
+  <licenses>
+   <license>
+    <name>Gnu Public License</name>
+    <url>http://www.gnu.org/copyleft/gpl.html</url>
+    <distribution>repo</distribution>
+   </license>
+   <license>
+    <name>The Apache Software License, Version 2.0</name>
+    <url>
+     http://www.apache.org/licenses/LICENSE-2.0.txt
+    </url>
+    <distribution>repo</distribution>
+   </license>
+  </licenses>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.melati</groupId>
+      <artifactId>melati</artifactId>
+      <version>0.7.8-RC3-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.5.8</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>7.4</version>
+      <classifier>jdbc3</classifier>
+    </dependency>
+
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>org.melati</groupId>
+      <artifactId>poem</artifactId>
+      <version>0.7.8-RC3-SNAPSHOT</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melati</groupId>
+      <artifactId>melati</artifactId>
+      <version>0.7.8-RC3-SNAPSHOT</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+     <groupId>net.sourceforge.jwebunit</groupId>
+     <artifactId>jwebunit-core</artifactId>
+     <version>1.4.1</version>
+     <scope>test</scope>
+    </dependency>
+    <dependency>
+     <groupId>net.sourceforge.jwebunit</groupId>
+     <artifactId>jwebunit-htmlunit-plugin</artifactId>
+     <version>1.4.1</version>
+     <scope>test</scope>
+    </dependency>
+    <dependency>
+     <groupId>org.mortbay.jetty</groupId>
+     <artifactId>jetty</artifactId>
+     <version>6.1.5</version>
+     <scope>test</scope>
+    </dependency>
+    <dependency>
+     <groupId>org.mortbay.jetty</groupId>
+     <artifactId>jsp-2.1</artifactId>
+     <version>6.1.5</version>
+     <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+   <sourceDirectory>src/main/java</sourceDirectory>
+   <testSourceDirectory>src/test/java</testSourceDirectory>
+   <!-- Resources that are packaged up inside the JAR file -->
+   <resources>
+    <resource>
+     <directory>src/main/java</directory>
+     <targetPath>META-INF</targetPath>
+     <includes>
+      <include>NOTICE.txt</include>
+     </includes>
+    </resource>
+    <resource>
+     <directory>src/main/java</directory>
+     <includes>
+      <include>**/*.wm</include>
+      <include>**/*.dsd</include>
+     </includes>
+    </resource>
+     <resource>
+      <directory>src/main/conf</directory>
+      <filtering>true</filtering>
+      <includes>
+       <include>**/*.properties</include>
+       <include>**/*.wm</include>
+      </includes>
+      </resource>
+   </resources>
+   <testResources>
+    <testResource>
+     <directory>src/test/java</directory>
+     <includes>
+      <include>**/*.dsd</include>
+      <include>**/*.properties</include>
+      <include>**/*.wm</include>
+      <include>**/*.vm</include>
+     </includes>
+    </testResource>
+   </testResources>
+   <plugins>
+    <plugin>
+     <groupId>org.apache.maven.plugins</groupId>
+     <artifactId>maven-compiler-plugin</artifactId>
+     <configuration>
+      <source>1.6</source>
+      <target>1.6</target>
+     </configuration>
+    </plugin>
+    <plugin>
+     <artifactId>maven-antrun-plugin</artifactId>
+     <!-- Delete this once it has run once -->
+     <!-- It is called twice as the pom is validated twice :( -->
+     <executions>
+      <execution>
+       <id>moveGeneratedFiles</id>
+       <phase>validate</phase>
+        <configuration>
+         <tasks>
+
+    <move failonerror="false" 
+      file="${project.build.sourceDirectory}/net/pizey/AppServlet.java" 
+      tofile="${project.build.sourceDirectory}/net/pizey/atomscraper/AtomscraperServlet.java" />
+    <move failonerror="false" 
+      file="${project.build.sourceDirectory}/net/pizey/poem/App.dsd" 
+      tofile="${project.build.sourceDirectory}/net/pizey/atomscraper/poem/atomscraper.dsd" />
+    <move failonerror="false" 
+      file="${project.build.testSourceDirectory}/net/pizey/poem/test/PoemTest.java" 
+      tofile="${project.build.testSourceDirectory}/net/pizey/atomscraper/poem/test/PoemTest.java" />
+    <move failonerror="false" 
+      file="${project.build.testSourceDirectory}/net/pizey/melati/test/JettyWebTestCase.java" 
+      tofile="${project.build.testSourceDirectory}/net/pizey/atomscraper/melati/test/AtomscraperJettyWebTestCase.java" />
+    <delete failonerror="false" 
+      dir="${project.build.sourceDirectory}/net/pizey/poem" />
+    <delete failonerror="false" 
+      dir="${project.build.testSourceDirectory}/net/pizey/poem" />
+    <delete failonerror="false" 
+      dir="${project.build.testSourceDirectory}/net/pizey/melati" />
+
+         </tasks>
+       </configuration>
+       <goals>
+        <goal>run</goal>
+       </goals>
+      </execution>
+     </executions>
+    </plugin>
+    <plugin>
+     <groupId>org.melati</groupId>
+     <artifactId>maven-dsd-plugin</artifactId>
+     <executions>
+       <execution>
+         <phase>generate-sources</phase>
+         <goals>
+           <goal>generate</goal>
+         </goals>
+       </execution>
+     </executions>
+     <configuration>
+       <dsdPackage>net.pizey.atomscraper.poem</dsdPackage>
+       <dsdFile>atomscraper.dsd</dsdFile>
+     </configuration>
+     <dependencies>
+      <dependency>
+       <groupId>org.melati</groupId>
+       <artifactId>poem</artifactId>
+       <version>0.7.8-RC3-SNAPSHOT</version>
+      </dependency>
+     </dependencies>
+    </plugin>
+     <!-- Copy the images etc to melati-static, unwanted side effect is that the classes file end up there too :( -->
+     <plugin>
+       <groupId>org.codehaus.mojo</groupId>
+       <artifactId>dependency-maven-plugin</artifactId>
+       <executions>
+         <execution>
+           <id>unzip-resources</id>
+           <phase>generate-resources</phase>
+           <goals>
+             <goal>unpack</goal>
+           </goals>
+           <configuration>
+             <artifactItems>
+               <artifactItem>
+                 <groupId>org.melati</groupId>
+                 <artifactId>melati</artifactId>
+                 <version>0.7.8-RC3-SNAPSHOT</version>
+               </artifactItem>
+             </artifactItems>
+             <outputDirectory>src/main/webapp</outputDirectory>
+           </configuration>
+         </execution>
+       </executions>
+     </plugin>
+     <plugin>
+       <groupId>org.codehaus.mojo</groupId>
+       <artifactId>exec-maven-plugin</artifactId>
+       <executions>
+         <execution>
+          <id>exportDSD</id>
+          <phase>test</phase>
+           <goals>
+             <goal>java</goal>
+           </goals>
+         </execution>
+       </executions>
+       <configuration>
+         <mainClass>org.melati.app.DSDApp</mainClass>
+         <arguments>
+           <argument>atomscraper</argument>
+           <argument>DSD</argument>
+           <argument>-output</argument>
+           <argument>${project.build.sourceDirectory}/net/pizey/atomscraper/poem/atomscraper.dsd</argument>
+         </arguments>
+       </configuration>
+    </plugin>
+    <plugin>
+     <groupId>org.mortbay.jetty</groupId>
+     <artifactId>maven-jetty-plugin</artifactId>
+      <configuration>
+        <contextPath>/</contextPath>
+        <scanIntervalSeconds>3</scanIntervalSeconds>
+     </configuration>
+    </plugin>
+   </plugins>
+  </build>
+  <reporting>
+   <plugins>
+    <plugin>
+     <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <configuration>
+         <tags>
+          <tag>TODO</tag>
+          <tag>FIXME</tag>
+          <tag>@deprecated</tag>
+          <tag>HACK</tag>
+          <tag>NOTE</tag>
+         </tags>
+        </configuration>
+      </plugin>
+   </plugins>
+  </reporting>
+  <distributionManagement>
+    <repository>
+      <id>melati</id>
+      <name>Default Repository</name>
+      <url>scp://melati.org/data/www/maven2/</url>
+    </repository>
+    <site>
+      <id>live</id>
+      <name>Live Site</name>
+      <url>scp://www.paneris.net/data/www/atomscraper/</url>
+    </site>
+  </distributionManagement>  
+  <pluginRepositories>
+    <pluginRepository>
+      <id>melati</id>
+      <name>Melati M2 Repository</name>
+      <url>http://www.melati.org/maven2/</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <repositories>
+    <repository>
+      <id>melati</id>
+      <name>Melati M2 Repository</name>
+      <url>http://www.melati.org/maven2/</url>
+    </repository>
+  </repositories>
+  <properties>
+        <pDir>/dist/atomscraper</pDir>
+  </properties>
+</project>
