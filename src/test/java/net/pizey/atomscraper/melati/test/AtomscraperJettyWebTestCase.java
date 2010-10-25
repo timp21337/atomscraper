@@ -20,11 +20,10 @@ import org.melati.JettyWebTestCase;
  * @since  3 Mar 2009
  *
  */
-
-
-
 public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
 
+  private int unlikelyPortNo = 8089;
+  
   public AtomscraperJettyWebTestCase(String name) {
     super(name);
     webAppDirName = "src/main/webapp";
@@ -37,10 +36,10 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
    */
   protected void setUp() throws Exception {
     // Port 0 means "assign arbitrarily port number"
-    actualPort = startServer(8080);
+    actualPort = startServer(unlikelyPortNo);
     getTestContext().setBaseUrl("http://localhost:" + actualPort + "/" );
     
-    // Delete hsqldb files
+    //Delete hsqldb files
     //File script = new File("db/atomscraper.script");
     //script.delete();
     //File properties = new File("db/atomscraper.properties");
