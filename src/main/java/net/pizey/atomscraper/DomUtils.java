@@ -3,6 +3,13 @@
  */
 package net.pizey.atomscraper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -48,5 +55,22 @@ public final class DomUtils {
     System.err.println(" " + nodeType + " kids:  " + node.getChildNodes().getLength());
     System.err.println("}");
   }
+
+
+public static String getContents(String uri) throws MalformedURLException,
+        IOException {
+    URL url = new URL(uri);
+    URLConnection yc = url.openConnection();
+    BufferedReader in = new BufferedReader(new InputStreamReader(yc
+        .getInputStream()));
+    String inputLine;
+    StringBuffer contents = new StringBuffer();
+    while ((inputLine = in.readLine()) != null) {
+      contents.append(inputLine);
+      contents.append('\n');
+    }
+    in.close();
+    return contents.toString();
+}
 
 }
