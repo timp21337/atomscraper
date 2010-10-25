@@ -13,8 +13,6 @@
 
 package net.pizey.atomscraper.melati.test;
 
-import java.io.File;
-
 import org.melati.JettyWebTestCase;
 
 /**
@@ -30,7 +28,7 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   public AtomscraperJettyWebTestCase(String name) {
     super(name);
     webAppDirName = "src/main/webapp";
-    contextName = "";
+    contextName = "atomscraper";
   }
 
   /**
@@ -38,11 +36,15 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
    * @see org.melati.JettyWebTestCase#setUp()
    */
   protected void setUp() throws Exception {
-    super.setUp();
-    File script = new File("db/atomscraper.script");
-    script.delete();
-    File properties = new File("db/atomscraper.properties");
-    properties.delete();
+    // Port 0 means "assign arbitrarily port number"
+    actualPort = startServer(8080);
+    getTestContext().setBaseUrl("http://localhost:" + actualPort + "/" );
+    
+    // Delete hsqldb files
+    //File script = new File("db/atomscraper.script");
+    //script.delete();
+    //File properties = new File("db/atomscraper.properties");
+    //properties.delete();
   }
 
   /**
@@ -77,8 +79,9 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   }
   
   public void testEntrySchlurp() { 
-    beginAt("Login/atomscraper?continuationURL=" + 
-        "/Entry/Flat?uri=http://localhost:" + getActualPort() + "/testdata/studies/KHDXJ.atom");
+    setScriptingEnabled(false);
+    beginAt("/Login/atomscraper?continuationURL=" + 
+        "/atomscraper/Entry/Flat?uri=http://localhost:" + getActualPort() + "/atomscraper/testdata/studies/KHDXJ.atom");
     setTextField("field_login", "_administrator_");
     setTextField("field_password", "FIXME");
     checkCheckbox("rememberme");
