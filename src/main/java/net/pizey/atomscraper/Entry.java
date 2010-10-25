@@ -3,10 +3,6 @@
  */
 package net.pizey.atomscraper;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -73,20 +69,10 @@ public class Entry extends AtomscraperServlet {
 
   private void populateContext(Melati melati,
       ServletTemplateContext templateContext, String uri) throws Exception {
-    URL url = new URL(uri);
-    URLConnection yc = url.openConnection();
-    BufferedReader in = new BufferedReader(new InputStreamReader(yc
-        .getInputStream()));
-    String inputLine;
-    StringBuffer contents = new StringBuffer();
-    while ((inputLine = in.readLine()) != null) {
-      contents.append(inputLine);
-      contents.append('\n');
-      // System.err.println(inputLine);
-    }
-    in.close();
-    templateContext.put("contents", contents.toString());
-    templateContext.put("uri", uri);
+  
+    //templateContext.put("uri", uri);
+    //templateContext.put("contents", DomUtils.getContents(uri));
+    templateContext.put("admin", new AdminUtils(melati));
 
     Persistent it = parseEntry(melati.getDatabase(), uri);
     PoemThread.commit(); // The last table defined is not yet committed
@@ -94,11 +80,10 @@ public class Entry extends AtomscraperServlet {
       throw new RuntimeException("Failed");
     melati.setPoemContext(new PoemContext(it, "render"));
     melati.loadTableAndObject();
+    
     List<Tuple> flattenedValues = new ArrayList<Tuple>();
     templateContext.put("flattenedValues", flattenedValues(flattenedValues, it, it.getTable().getName() + ".1."));
-    templateContext.put("admin", new AdminUtils(melati));
   }
-
 
   private List<Tuple> flattenedValues(List<Tuple> flattenedValues, Persistent it, String prefix) {
     Enumeration<Field> recordDisplayFields = it.getRecordDisplayFields();
