@@ -313,6 +313,20 @@
     <url-pattern>/Entry/*</url-pattern>
   </servlet-mapping>
 
+<!-- atomscraper specific -->
+  <servlet>
+    <servlet-name>net.pizey.atomscraper.Empty</servlet-name>
+    <servlet-class>net.pizey.atomscraper.Empty</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>net.pizey.atomscraper.Empty</servlet-name>
+    <url-pattern>/net.pizey.atomscraper.Empty/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>net.pizey.atomscraper.Empty</servlet-name>
+    <url-pattern>/Empty/*</url-pattern>
+  </servlet-mapping>
+
 </web-app>
 
 
