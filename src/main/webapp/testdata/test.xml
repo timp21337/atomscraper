@@ -1,0 +1,11 @@
+<top>
+<child1 att1="1">
+</child1>
+<child2 att1="2">
+<grandchild>
+<nose>1</nose>
+<eyes>2</eyes>
+<tentacles/>
+</grandchild>
+</child2>
+</top>
