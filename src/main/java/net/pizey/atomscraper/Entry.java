@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.pizey.atomscraper;
 
 import java.util.ArrayList;
@@ -63,26 +60,24 @@ public class Entry extends AtomscraperServlet {
     String uri = melati.getRequest().getParameter("uri");
     if (uri == null)
       throw new MissingArgumentException("No uri parameter found");
-    populateContext(melati, templateContext, uri);
+    populateContext(melati, uri);
     return "flat";
   }
 
   private void populateContext(Melati melati,
-      ServletTemplateContext templateContext, String uri) throws Exception {
+      String uri) throws Exception {
   
-    //templateContext.put("uri", uri);
-    //templateContext.put("contents", DomUtils.getContents(uri));
-    templateContext.put("admin", new AdminUtils(melati));
+    melati.getTemplateContext().put("admin", new AdminUtils(melati));
 
     Persistent it = parseEntry(melati.getDatabase(), uri);
-    PoemThread.commit(); // The last table defined is not yet committed
     if (it == null)
       throw new RuntimeException("Failed");
     melati.setPoemContext(new PoemContext(it, "render"));
     melati.loadTableAndObject();
-    
+    System.err.println(melati.getDatabase().getCommittedConnection().getCatalog());
+    System.err.println(melati.getDatabase().getName());
     List<Tuple> flattenedValues = new ArrayList<Tuple>();
-    templateContext.put("flattenedValues", flattenedValues(flattenedValues, it, it.getTable().getName() + ".1."));
+    melati.getTemplateContext().put("flattenedValues", flattenedValues(flattenedValues, it, it.getTable().getName() + ".1."));
   }
 
   private List<Tuple> flattenedValues(List<Tuple> flattenedValues, Persistent it, String prefix) {
@@ -120,7 +115,6 @@ public class Entry extends AtomscraperServlet {
     dom = DomUtils.stripWhitespace(dom,dom.getDocumentElement());
     
     Element docElement = dom.getDocumentElement();
-    System.err.println(docElement.getNodeName());
 
     return persist(database, docElement);
   }
@@ -136,13 +130,14 @@ public class Entry extends AtomscraperServlet {
       table = createTable(database, cleanName(element.getNodeName()));
     }
     Persistent p = table.newPersistent();
-    
-    setValues(database, p, element, setAttributes(p, element));
+
+    setAttributes(p, element);
+    setValues(database, p, element);
     if (p.getTable().getName().equals("atom_link")) {
-      System.err.println("Found link with rel " + p.getField("rel").getCookedString());
       if (p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/studyInfo")
-          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia)"))
-       addChild(p, parseEntry(database, p.getField("href").getCookedString()));
+          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia)")){
+                // FIXME Just fo rnow addChild(p, parseEntry(database, p.getField("href").getCookedString()));
+      }
     }
     
     
@@ -170,58 +165,35 @@ public class Entry extends AtomscraperServlet {
   }
 
   private void setValues(Database database, Persistent persistent,
-      Element element, boolean hasAttributes) throws Exception {
+      Element element) throws Exception {
     NodeList kids = element.getChildNodes();
     if (kids.getLength() == 0) { // empty element eg <region/>
       setField(persistent, 
           cleanName(element.getNodeName()), 
           "", "Flag");
-    } else if (kids.getLength() == 1 && kids.item(0).getNodeType() == Node.TEXT_NODE) { 
-      // A leaf value node
-      Node kid = kids.item(0);
-      setField(persistent, 
-          cleanName(element.getNodeName()), 
-          kid.getNodeValue(), "Value");
+    } else if (kids.getLength() == 1 && 
+               kids.item(0).getNodeType() == Node.TEXT_NODE) { 
+        // A leaf value node
+        Node kid = kids.item(0);
+        setField(persistent, 
+            cleanName(element.getNodeName()), 
+            kid.getNodeValue(), "Value");
     } else { 
-      boolean isRepeat = true;
-      String nodeName = null;
       for (int i = 0; i < kids.getLength(); i++) {
-        if (nodeName == null)
-          nodeName = kids.item(i).getNodeName();
-        if (!nodeName.equals(kids.item(i).getNodeName()))
-          isRepeat = false;
-        System.err.println(nodeName + "=" + kids.item(i).getNodeName() + " " + isRepeat);
-      }
-      //NOTE that a single element within an element is a repeat of size 1
-      if (isRepeat){
-        System.err.println("Is a repeat: " + nodeName);
-        for (int i = 0; i < kids.getLength(); i++) {
-          Node kid = kids.item(i);
-          DomUtils.dumpNode(kid);
-          if (kid.getNodeType() == Node.ELEMENT_NODE) {
-                 Persistent child = persist(database, (Element)kid);
-                 System.err.println("Created: " + child.displayString());
-                 addChild(persistent, child);
-          } else throw new RuntimeException("Unexpected node type (expected Element)"
-                   + kid.getNodeType());
-       } 
-      } else {
-        for (int i = 0; i < kids.getLength(); i++) {
-          Node kid = kids.item(i);
-          DomUtils.dumpNode(kid);
-          NodeList grandChildren = kid.getChildNodes();
-          if (grandChildren.getLength() == 1 && grandChildren.item(0).getNodeType() == Node.TEXT_NODE) {
-            setField(persistent, 
-                cleanName(kid.getNodeName()), 
-                grandChildren.item(0).getNodeValue(), "Value2");
-            
-          } else if (kid.getNodeType() == Node.ELEMENT_NODE) {
-                 Persistent child = persist(database, (Element)kid);
-                 System.err.println("Created: " + child.displayString());
-                 addChild(persistent, child);
-          } else throw new RuntimeException("Unexpected node type"
-                   + kid.getNodeType());
-       } 
+        Node kid = kids.item(i);
+        DomUtils.dumpNode(kid);
+        NodeList grandChildren = kid.getChildNodes();
+        if (grandChildren.getLength() == 1 && grandChildren.item(0).getNodeType() == Node.TEXT_NODE) {
+          setField(persistent, 
+              cleanName(kid.getNodeName()), 
+              grandChildren.item(0).getNodeValue(), "Value2");
+          
+        } else if (kid.getNodeType() == Node.ELEMENT_NODE) {
+               Persistent child = persist(database, (Element)kid);
+               System.err.println("Created: " + child.displayString());
+               addChild(persistent, child);
+        } else throw new RuntimeException("Unexpected node type"
+                  + kid.getNodeType());
       }
     }
   }
@@ -270,6 +242,7 @@ public class Entry extends AtomscraperServlet {
     name = name.replaceAll("-","_");
     return name;
   }
+  
   private void setField(Persistent p, String fieldName, String fieldValue,
       String type) {
     try { 
@@ -305,6 +278,7 @@ public class Entry extends AtomscraperServlet {
 
   private static void addColumn(Table table, String name, Class<?> fieldClass,
       boolean hasSetter, String description, Integer referenceColumnTroid) {
+    System.err.println("Adding colum " + name + " to " + table.getName());
     ColumnInfo columnInfo = (ColumnInfo) table.getDatabase()
         .getColumnInfoTable().newPersistent();
     columnInfo.setTableinfo(table.getInfo());
