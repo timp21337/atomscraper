@@ -60,7 +60,7 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
    * @throws Exception
    */
   public static void main(String[] args) throws Exception {
-    contextName = "";
+    contextName = "atomscraper";
     webAppDirName = "src/main/webapp";
     startServer(8080);
   }
