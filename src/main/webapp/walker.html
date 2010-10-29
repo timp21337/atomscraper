@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript"></script>
+<script type="text/javascript">
+function loaded() { 
+	loadXMLDoc("donuts.xml");
+}
+var responseContent;
+function loadXMLDoc(url)
+{
+  if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {// code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function(){
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      var xmlDoc = xmlhttp.responseXML;
+      var context = xmlDoc.getNodeName();
+      //var cols, vals;
+      flatten(context, cols, vals, e);
+    }
+  }
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+}
+
+function log(message) { 
+    document.getElementById("console").innerHTML = "Message:" + message;      	
+}
+
+function flatten(context, columns, values, element) { 
+	log("WTF");
+    log(context);
+}
+
+</script>
+</head>
+<body onLoad="loaded()">
+<div id="content"/>
+<div id="console" style="border: 1px solid red; height: 40px;"></div>
+</html>
