@@ -1,47 +1,158 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript"></script>
 <script type="text/javascript">
-function loaded() { 
-	loadXMLDoc("donuts.xml");
+var startDate = new Date();
+var start = startDate.getTime();
+function loaded() {
+  log("start:" + start);
+  var columns = new Array();
+  var values = new Array();
+	 //loadXMLDoc("",columns, values, "http://localhost:8080/atomscraper/test.xml");
+	 loadXMLDoc("",columns, values, "http://localhost:8080/atomscraper/testdata/studies/KHDXJ.xml");
+  log("end:" + sinceStart());
+}
+function sinceStart() {
+ var nowDate = new Date();
+ return  nowDate.getTime() - start; 
 }
 var responseContent;
-function loadXMLDoc(url)
+function loadXMLDoc(pathToNode, columns, values, url)
 {
+  var xmlhttp;
   if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
+    xmlhttp = new XMLHttpRequest();
   }
   else
   {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
   xmlhttp.onreadystatechange=function(){
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-      var xmlDoc = xmlhttp.responseXML;
-      var context = xmlDoc.getNodeName();
-      //var cols, vals;
-      flatten(context, cols, vals, e);
+    log("onreadystatechage:" + sinceStart());
+    if (xmlhttp.readyState==4) {
+      if(xmlhttp.status==200) {
+        var xmlDoc = xmlhttp.responseXML;
+        if (pathToNode != "")
+          pathToNaode = pathToNode + ".";  
+        flatten(pathToNode + xmlDoc.documentElement.nodeName + "/1", columns, values, xmlDoc.documentElement);
+        var columnsAsString;
+        var valuesAsString;
+        log("for:" + sinceStart());
+        for (var i = 0; i < columns.length; i++)  {
+          if (columnsAsString == undefined) {
+            columnsAsString = columns[i];
+            valuesAsString = values[i];
+          } else { 
+            columnsAsString = columnsAsString + "," + columns[i];
+            valuesAsString = valuesAsString + "," + values[i];
+          }
+        }
+        document.getElementById("content").innerHTML = columnsAsString + "\n" + 
+        valuesAsString + "\n" ;//+ sinceStart();  
+        var win = window.open(
+          'data:text/csv,' + encodeURIComponent([
+          columnsAsString,
+          valuesAsString].join('\r\n')),
+          'jsTest'
+         );
+
+        log("done:" + sinceStart());
+      } else {
+        RuntimeException("Unexpected http status: " +  xmlhttp.status);
+      }
+      
     }
   }
+   log("open:" + sinceStart());
   xmlhttp.open("GET", url, true);
+   log("opened:" + sinceStart());
   xmlhttp.send();
+   log("sent:" + sinceStart());
+  
 }
 
-function log(message) { 
-    document.getElementById("console").innerHTML = "Message:" + message;      	
-}
+function flatten(pathToValue, columns, values, element) { 
+  log("dump\n" +dump(element));
+  log("flatten in :" + sinceStart());
+		var kids = element.childNodes;
+		if (kids.length == 1) {
+			// element is a leaf
+			// If there are no Child Elements then 
+			// the first child will be a text one
+			var textContent = element.childNodes[0];
+			if (textContent== undefined){
+			  RuntimeException("Node zero undefined ");
+   } else {
+  			if (trim(textContent.nodeValue) != "") { 
+  	  		columns[columns.length] = pathToValue;
+       values[values.length] = textContent.nodeValue;
+     } 
+  	}
+		}
+		else {
+			// element is not a leaf, recurse
+			var counts = {};
+			
+   for (var i = 0; i < kids.length; i++){
+			  var kid = kids[i];
+			 	var name = kid.nodeName;
 
-function flatten(context, columns, values, element) { 
-	log("WTF");
-    log(context);
+			  if (name == "#text" && kid.nodeValue) { 
+			    if(trim(kid.nodeValue) != "" ) 
+  			  RuntimeException("found text when kids length =  " + kids.length);
+  			} else if (name == undefined) {
+  			  RuntimeException("undefined at " + i + " when kids length =  " + kids.length);
+  			} else	if (name == "atom:link") {
+  			  if (kid.getAttribute("rel") == "http://www.cggh.org/2010/chassis/terms/studyInfo") { 
+    			  var linkUrl = kid.getAttribute("href");
+  			    loadXMLDoc(pathToValue,columns, values, linkUrl)
+  			  }
+  			} else {
+  			 	if (counts[name])
+		  	 	 	counts[name] = counts[name]+1;
+			   	else 
+			   	  counts[name] = 1;
+				
+			   	var newContext = pathToValue + "." + name + "/" + counts[name];
+			   	flatten(newContext, columns, values, kid);
+	
+		  	}
+		 }
+  log("flatten out :"+ sinceStart());
+		}
+
+}
+function log(text){ 
+  //message("Log", text);
+}
+function RuntimeException(text) { 
+  message("Err", text);
+}
+function message(type, text) { 
+    document.getElementById("console").innerHTML = 
+    document.getElementById("console").innerHTML + "<br/>\n" + type + ":" + text;      	
+}
+function dump(node) {
+  var returnString = node.nodeName + "(" + node.nodeType+")=" + node.nodeValue + "\n";
+  var kids = node.childNodes;
+  returnString = returnString + "length:"  + kids.length +"\n";
+  for (var i = 0; i < kids.length; i++){
+    returnString = returnString + "--" +  i + ")" + kids[i].nodeName + "(" + kids[i].nodeType + ")=" + kids[i].nodeValue + "\n";
+  }
+  return returnString; 
+}
+function trim (str) {
+  var  str = str.replace(/^\s\s*/, ''),
+       ws = /\s/,
+       i = str.length;
+  while (ws.test(str.charAt(--i)));
+  return str.slice(0, i + 1);
 }
 
 </script>
 </head>
 <body onLoad="loaded()">
-<div id="content"/>
-<div id="console" style="border: 1px solid red; height: 40px;"></div>
+<pre id="content"/>
+<pre id="console" style="border: 1px solid red; height: 40px;"></pre>
 </html>
