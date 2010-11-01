@@ -2,78 +2,81 @@
 <html>
 <head>
 <script type="text/javascript">
+var logOutput = "";
 var startDate = new Date();
 var start = startDate.getTime();
-function loaded() {
+var outstandingAsynchCalls = 0;
+var columns = new Array();
+var values = new Array();
+
+function sinceStart() {
+  var nowDate = new Date();
+  return  nowDate.getTime() - start; 
+}
+
+function load(uri) {
   log("start:" + start);
-  var columns = new Array();
-  var values = new Array();
-	 //loadXMLDoc("",columns, values, "http://localhost:8080/atomscraper/test.xml");
-	 loadXMLDoc("",columns, values, "http://localhost:8080/atomscraper/testdata/studies/KHDXJ.xml");
+  loadXMLDoc("",columns, values, uri);
   log("end:" + sinceStart());
 }
-function sinceStart() {
- var nowDate = new Date();
- return  nowDate.getTime() - start; 
+function setDocumentContent() { 
+	if (outstandingAsynchCalls == 0) {
+		window.location.href='data:text/csv;charset=utf-8;filename=t.csv;Content-Disposition=atom.csv,' + 
+      encodeURIComponent(columns.join(",") + "\n" + values.join(",") + "\n"); 
+	// This also works, both methods require popup unblocking
+  //  var win = window.open(
+  //      'data:text/csv;charset=utf-8,' + 
+  //       encodeURIComponent(columns.join(",") + "\n" + values.join(",") + "\n"),
+  //    'jsTest'
+  //   );
+  } 
+	
 }
-var responseContent;
-function loadXMLDoc(pathToNode, columns, values, url)
-{
-  var xmlhttp;
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
+
+function loadXMLDoc(pathToNode, columns, values, url) {
+  var xhr;
+  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xhr = new XMLHttpRequest();
   }
-  else
-  {// code for IE6, IE5
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  else {// code for IE6, IE5
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
   }
-  xmlhttp.onreadystatechange=function(){
-    log("onreadystatechage:" + sinceStart());
-    if (xmlhttp.readyState==4) {
-      if(xmlhttp.status==200) {
-        var xmlDoc = xmlhttp.responseXML;
+  xhr.onreadystatechange=function(){
+    log("onreadystatechange:" + sinceStart());
+    if (xhr.readyState==4) {
+      if(xhr.status==200) {
+        var xmlDoc = xhr.responseXML;
+        if (xmlDoc == undefined) 
+          RuntimeException("xmlDoc null");
         if (pathToNode != "")
-          pathToNaode = pathToNode + ".";  
-        flatten(pathToNode + xmlDoc.documentElement.nodeName + "/1", columns, values, xmlDoc.documentElement);
-        var columnsAsString;
-        var valuesAsString;
-        log("for:" + sinceStart());
-        for (var i = 0; i < columns.length; i++)  {
-          if (columnsAsString == undefined) {
-            columnsAsString = columns[i];
-            valuesAsString = values[i];
-          } else { 
-            columnsAsString = columnsAsString + "," + columns[i];
-            valuesAsString = valuesAsString + "," + values[i];
-          }
-        }
-        document.getElementById("content").innerHTML = columnsAsString + "\n" + 
-        valuesAsString + "\n" ;//+ sinceStart();  
-        var win = window.open(
-          'data:text/csv,' + encodeURIComponent([
-          columnsAsString,
-          valuesAsString].join('\r\n')),
-          'jsTest'
-         );
+          pathToNode = pathToNode + ".";
+        pathToNode = pathToNode + xmlDoc.documentElement.nodeName + "/1";   
+        flatten(pathToNode, columns, values, xmlDoc.documentElement);
 
         log("done:" + sinceStart());
       } else {
-        RuntimeException("Unexpected http status: " +  xmlhttp.status);
+    	  if(xhr.status==0)
+          RuntimeException("Unexpected http status: " +  xhr.status + "; are you authorised?");
+    	  else
+    	    RuntimeException("Unexpected http status: " +  xhr.status);
       }
-      
+      outstandingAsynchCalls--;  
+      setDocumentContent();
     }
-  }
-   log("open:" + sinceStart());
-  xmlhttp.open("GET", url, true);
-   log("opened:" + sinceStart());
-  xmlhttp.send();
-   log("sent:" + sinceStart());
+  };
+
+  
+  outstandingAsynchCalls++;
+  log("open:" + sinceStart());
+  xhr.open("GET", url, true); 
+  log("opened:" + sinceStart());
+  xhr.send();
+  log("sent:" + sinceStart());
   
 }
 
 function flatten(pathToValue, columns, values, element) { 
-  log("dump\n" +dump(element));
+  log("dump\n" + dump(element));
   log("flatten in :" + sinceStart());
 		var kids = element.childNodes;
 		if (kids.length == 1) {
@@ -85,16 +88,16 @@ function flatten(pathToValue, columns, values, element) {
 			  RuntimeException("Node zero undefined ");
    } else {
   			if (trim(textContent.nodeValue) != "") { 
-  	  		columns[columns.length] = pathToValue;
-       values[values.length] = textContent.nodeValue;
-     } 
-  	}
+  	      columns[columns.length] = pathToValue;
+          values[values.length] = textContent.nodeValue;
+        } 
+  	  }
 		}
 		else {
 			// element is not a leaf, recurse
 			var counts = {};
 			
-   for (var i = 0; i < kids.length; i++){
+      for (var i = 0; i < kids.length; i++){
 			  var kid = kids[i];
 			 	var name = kid.nodeName;
 
@@ -106,7 +109,7 @@ function flatten(pathToValue, columns, values, element) {
   			} else	if (name == "atom:link") {
   			  if (kid.getAttribute("rel") == "http://www.cggh.org/2010/chassis/terms/studyInfo") { 
     			  var linkUrl = kid.getAttribute("href");
-  			    loadXMLDoc(pathToValue,columns, values, linkUrl)
+  			    loadXMLDoc(pathToValue + ".", columns, values, linkUrl)
   			  }
   			} else {
   			 	if (counts[name])
@@ -119,19 +122,19 @@ function flatten(pathToValue, columns, values, element) {
 	
 		  	}
 		 }
-  log("flatten out :"+ sinceStart());
+     log("flatten out :"+ sinceStart());
 		}
 
 }
 function log(text){ 
-  //message("Log", text);
+  message("Log", text);
 }
 function RuntimeException(text) { 
   message("Err", text);
+  document.getElementById("console").innerHTML = logOutput;
 }
 function message(type, text) { 
-    document.getElementById("console").innerHTML = 
-    document.getElementById("console").innerHTML + "<br/>\n" + type + ":" + text;      	
+    logOutput = logOutput + "<br/>\n" + type + ":" + text;      	
 }
 function dump(node) {
   var returnString = node.nodeName + "(" + node.nodeType+")=" + node.nodeValue + "\n";
@@ -150,9 +153,27 @@ function trim (str) {
   return str.slice(0, i + 1);
 }
 
+function submitted() { 
+  load(document.flattenerForm.uri.value);
+  //document.getElementById("console").innerHTML = logOutput;
+	return false;
+}
 </script>
 </head>
-<body onLoad="loaded()">
-<pre id="content"/>
-<pre id="console" style="border: 1px solid red; height: 40px;"></pre>
+<body>
+<pre id="content" />
+<form onSubmit="return false;" id="flattenerForm" name="flattenerForm" method="POST">
+<!--  
+   value="https://www.wwarn.org/repository/atombeat/content/studies/JGZGH.atom"
+    value="http://localhost:8080/atomscraper/testdata/studies/KHDXJ.xml" />
+ -->   
+ <input type="text" name="uri" id="uri" size="60"
+   value="https://balbo.well.ox.ac.uk/repository/atombeat/content/studies/JGZGH.atom"
+ />
+ <input type="submit" value="Flatten" onClick="submitted();" />
+</form>
+<pre id="console" />
+
+
+
 </html>
