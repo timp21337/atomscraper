@@ -1,6 +1,7 @@
 package net.pizey.atomscraper;
 
 import org.melati.Melati;
+import org.melati.poem.PoemDatabaseFactory;
 import org.melati.poem.Table;
 import org.melati.template.ServletTemplateContext;
 
@@ -21,6 +22,9 @@ public class Empty extends AtomscraperServlet {
     for (Table t :  melati.getDatabase().getDisplayTables()) {
       System.err.println("Deleting " + t.getName());
       melati.getDatabase().deleteTableAndCommit(t.getInfo());
+      String name = melati.getDatabaseName();
+      PoemDatabaseFactory.disconnectDatabase(name);
+      //PoemDatabaseFactory.getDatabase(name);
     }
     return "Emptied";
   }
