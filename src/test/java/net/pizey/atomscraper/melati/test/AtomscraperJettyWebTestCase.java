@@ -78,24 +78,35 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   }
   
   public void testEntrySchlurp() {
-    schlurp("testdata/studies/KHDXJ.atom");
+     schlurp("/Login/atomscraper?continuationURL=" + 
+       "/atomscraper/Entry/Flat?uri=http://localhost:" + 
+       getActualPort() + "/atomscraper/testdata/studies/KHDXJ.atom");
   }
 
   public void testTree() { 
-    System.err.println(schlurp("testdata/test.xml"));
+    System.err.println(schlurp("/Login/atomscraper?continuationURL=" + 
+        "/atomscraper/Entry/Flat?uri=http://localhost:" + 
+        getActualPort() + "/atomscraper/testdata/test.xml"));
   }
+  
   public void testEmpty() { 
-    System.err.println(schlurp("Empty/atomscraper"));
+    System.err.println(schlurp("/Empty/atomscraper"));
   }
 
   private String schlurp(String relativeUrl) {
     setScriptingEnabled(false);
-    beginAt("/Login/atomscraper?continuationURL=" + 
-        "/atomscraper/Entry/Flat?uri=http://localhost:" + getActualPort() + "/atomscraper/" + relativeUrl);
+    beginAt(relativeUrl);
     setTextField("field_login", "_administrator_");
     setTextField("field_password", "FIXME");
     checkCheckbox("rememberme");
     submit("action");
     return getPageSource();
   }
+  
+  public void testWalker() { 
+    setScriptingEnabled(true);
+    beginAt("/walker.html");
+  }
+
+
 }
