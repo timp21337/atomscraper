@@ -1,0 +1,12 @@
+<atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+ <child att1="attribute1">
+ </child>
+ <child att1="attribute2">
+  <grandchild>
+  <nose>1</nose>
+  <eyes>2</eyes>
+  <tentacles/>
+  </grandchild>
+ </child>
+ <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns"  atombeat:allow="GET, PUT, DELETE" rel="http://www.cggh.org/2010/chassis/terms/studyInfo" href="http://localhost:8080/atomscraper/testChild.xml" type="application/atom+xml;type=entry"/>
+</atom:entry>

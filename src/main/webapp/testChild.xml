@@ -1,0 +1,11 @@
+<ctop>
+ <child1 att1="1">
+ </child1>
+ <child2 att1="2">
+  <grandchild>
+   <nose>long</nose>
+   <eyes>blue</eyes>
+   <tentacles>8</tentacles>
+   </grandchild>
+ </child2>
+</ctop>
