@@ -1,5 +1,8 @@
+src/main/webapp/META-INF/maven/org.melati/melati/pom.properties
+src/main/webapp/META-INF/MANIFEST.MF
 src/main/webapp/melati-static/admin/validation.js
 src/main/webapp/org/
 target/
+WebContent/
 .settings
 
