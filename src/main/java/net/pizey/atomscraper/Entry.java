@@ -74,10 +74,11 @@ public class Entry extends AtomscraperServlet {
       throw new RuntimeException("Failed");
     melati.setPoemContext(new PoemContext(it, "render"));
     melati.loadTableAndObject();
-    System.err.println(melati.getDatabase().getCommittedConnection().getCatalog());
-    System.err.println(melati.getDatabase().getName());
+    System.err.println("Through3");
     List<Tuple> flattenedValues = new ArrayList<Tuple>();
-    melati.getTemplateContext().put("flattenedValues", flattenedValues(flattenedValues, it, it.getTable().getName() + ".1."));
+    melati.getTemplateContext().put("flattenedValues", 
+        flattenedValues(flattenedValues, it, it.getTable().getName() + ".1."));
+    System.err.println("Through4");
   }
 
   private List<Tuple> flattenedValues(List<Tuple> flattenedValues, Persistent it, String prefix) {

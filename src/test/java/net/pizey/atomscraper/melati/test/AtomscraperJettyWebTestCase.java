@@ -77,21 +77,22 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
     assertTextPresent("Study info - why no title? ");
   }
   
-  public void testEntrySchlurp() {
-     schlurp("/Login/atomscraper?continuationURL=" + 
-       "/atomscraper/Entry/Flat?uri=http://localhost:" + 
-       getActualPort() + "/atomscraper/testdata/studies/KHDXJ.atom");
-  }
-
   public void testTree() { 
     System.err.println(schlurp("/Login/atomscraper?continuationURL=" + 
         "/atomscraper/Entry/Flat?uri=http://localhost:" + 
         getActualPort() + "/atomscraper/testdata/test.xml"));
   }
   
+  /*
   public void testEmpty() { 
     System.err.println(schlurp("/Empty/atomscraper"));
   }
+  public void testEntrySchlurp() {
+     schlurp("/Login/atomscraper?continuationURL=" + 
+       "/atomscraper/Entry/Flat?uri=http://localhost:" + 
+       getActualPort() + "/atomscraper/testdata/studies/KHDXJ.atom");
+  }
+*/  
 
   private String schlurp(String relativeUrl) {
     setScriptingEnabled(false);
@@ -106,6 +107,8 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   public void testWalker() { 
     setScriptingEnabled(true);
     beginAt("/walker.html");
+    clickButton("flatten");
+    dumpHtml();
   }
 
 

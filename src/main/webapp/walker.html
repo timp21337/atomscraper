@@ -156,21 +156,21 @@ function trim (str) {
 function submitted() { 
   load(document.flattenerForm.uri.value);
   //document.getElementById("console").innerHTML = logOutput;
-	return false;
+	 return false;
 }
 </script>
 </head>
 <body>
 <pre id="content" />
-<form onSubmit="return false;" id="flattenerForm" name="flattenerForm" method="POST">
+<form onSubmit="submitted();" id="flattenerForm" name="flattenerForm" >
 <!--  
    value="https://www.wwarn.org/repository/atombeat/content/studies/JGZGH.atom"
-    value="http://localhost:8080/atomscraper/testdata/studies/KHDXJ.xml" />
+   value="https://balbo.well.ox.ac.uk/repository/atombeat/content/studies/JGZGH.atom"
  -->   
  <input type="text" name="uri" id="uri" size="60"
-   value="https://balbo.well.ox.ac.uk/repository/atombeat/content/studies/JGZGH.atom"
+    value="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.xml" />
  />
- <input type="submit" value="Flatten" onClick="submitted();" />
+ <input type="submit" value="Flatten" onClick="submitted();" id="flatten" name="flatten"/>
 </form>
 <pre id="console" />
 
