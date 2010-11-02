@@ -9,19 +9,17 @@ var outstandingAsynchCalls = 0;
 var columns = new Array();
 var values = new Array();
 
-function sinceStart() {
-  var nowDate = new Date();
-  return  nowDate.getTime() - start; 
-}
 
 function load(uri) {
-  log("start:" + start);
-  loadXMLDoc("",columns, values, uri);
-  log("end:" + sinceStart());
+  try {
+    log("start:" + start);
+    loadXMLDoc("",columns, values, uri);
+    log("end:" + sinceStart());
+  } catch (e) { alert (e.description);}
 }
 function setDocumentContent() { 
 	if (outstandingAsynchCalls == 0) {
-		window.location.href='data:text/csv;charset=utf-8;filename=t.csv;Content-Disposition=atom.csv,' + 
+		window.location.href='data:text/csv;charset=utf-8,' + 
       encodeURIComponent(columns.join(",") + "\n" + values.join(",") + "\n"); 
 	// This also works, both methods require popup unblocking
   //  var win = window.open(
@@ -34,20 +32,33 @@ function setDocumentContent() {
 }
 
 function loadXMLDoc(pathToNode, columns, values, url) {
-  var xhr;
-  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xhr = new XMLHttpRequest();
-  }
-  else {// code for IE6, IE5
-    xhr = new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  var xhr = new XMLHttpRequest();
   xhr.onreadystatechange=function(){
     log("onreadystatechange:" + sinceStart());
     if (xhr.readyState==4) {
       if(xhr.status==200) {
         var xmlDoc = xhr.responseXML;
         if (xmlDoc == undefined) 
-          RuntimeException("xmlDoc null");
+          throw new Error("xmlDoc null");
+        if (xmlDoc.documentElement == undefined) {
+          if (window.DOMParser)
+          {
+            throw new Error("xmlDoc.documentElement null");
+          }
+          else // Internet Explorer
+          {
+            xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+            xmlDoc.async="false";
+            xmlDoc.loadXML(xhr.responseText);
+          }
+          if (xmlDoc.documentElement == undefined) {
+            throw new Error("xmlDoc.documentElement still null");
+          }
+        }
+        if (xmlDoc.documentElement.nodeName == undefined) 
+          throw new Error("xmlDoc.documentElement.nodeName null");
+        if (pathToNode != "")
+          pathToNode = pathToNode + ".";
         if (pathToNode != "")
           pathToNode = pathToNode + ".";
         pathToNode = pathToNode + xmlDoc.documentElement.nodeName + "/1";   
@@ -56,9 +67,9 @@ function loadXMLDoc(pathToNode, columns, values, url) {
         log("done:" + sinceStart());
       } else {
     	  if(xhr.status==0)
-          RuntimeException("Unexpected http status: " +  xhr.status + "; are you authorised?");
+    	    throw new Error("Unexpected http status: " +  xhr.status + "; are you authorised?");
     	  else
-    	    RuntimeException("Unexpected http status: " +  xhr.status);
+    	    throw new Error("Unexpected http status: " +  xhr.status);
       }
       outstandingAsynchCalls--;  
       setDocumentContent();
@@ -85,7 +96,7 @@ function flatten(pathToValue, columns, values, element) {
 			// the first child will be a text one
 			var textContent = element.childNodes[0];
 			if (textContent== undefined){
-			  RuntimeException("Node zero undefined ");
+			  throw new Error("Node zero undefined ");
    } else {
   			if (trim(textContent.nodeValue) != "") { 
   	      columns[columns.length] = pathToValue;
@@ -103,9 +114,9 @@ function flatten(pathToValue, columns, values, element) {
 
 			  if (name == "#text" && kid.nodeValue) { 
 			    if(trim(kid.nodeValue) != "" ) 
-  			  RuntimeException("found text when kids length =  " + kids.length);
+			      throw new Error("found text when kids length =  " + kids.length);
   			} else if (name == undefined) {
-  			  RuntimeException("undefined at " + i + " when kids length =  " + kids.length);
+  			  throw new Error("undefined at " + i + " when kids length =  " + kids.length);
   			} else	if (name == "atom:link") {
   			  if (kid.getAttribute("rel") == "http://www.cggh.org/2010/chassis/terms/studyInfo") { 
     			  var linkUrl = kid.getAttribute("href");
@@ -129,10 +140,6 @@ function flatten(pathToValue, columns, values, element) {
 function log(text){ 
   message("Log", text);
 }
-function RuntimeException(text) { 
-  message("Err", text);
-  document.getElementById("console").innerHTML = logOutput;
-}
 function message(type, text) { 
     logOutput = logOutput + "<br/>\n" + type + ":" + text;      	
 }
@@ -146,11 +153,28 @@ function dump(node) {
   return returnString; 
 }
 function trim (str) {
+  if (str==null) return "";
   var  str = str.replace(/^\s\s*/, ''),
        ws = /\s/,
        i = str.length;
   while (ws.test(str.charAt(--i)));
   return str.slice(0, i + 1);
+}
+function isDataUriSchemeSupported() { 
+  if(/msie/i.test(navigator.userAgent) ) 
+    return false; // IE does nto allow navigation to data urls
+  var data = new Image();
+  var is = true;
+  data.onload = data.onerror = function(){
+    if(this.width != 1 || this.height != 1)
+      is = false;
+  }
+  data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+  return is;  
+}
+function sinceStart() {
+  var nowDate = new Date();
+  return  nowDate.getTime() - start; 
 }
 
 function submitted() { 
@@ -158,22 +182,35 @@ function submitted() {
   //document.getElementById("console").innerHTML = logOutput;
 	 return false;
 }
+function loaded() { // Exclude MS, ok for Firefox, Chrome, Opera, Safari
+  if (window.XMLHttpRequest && isDataUriSchemeSupported()) {
+    document.getElementById("DataUriSchemeSupported").style.visibility = "visible";
+  } else // MS Browsers 
+    document.getElementById("DataUriSchemeNotSupported").style.visibility = "visible";
+}
 </script>
 </head>
-<body>
+<body onload="loaded();">
+<div id="flattener">
 <pre id="content" />
+<div id="DataUriSchemeSupported" style="visibility:hidden;">
 <form onSubmit="submitted();" id="flattenerForm" name="flattenerForm" >
 <!--  
    value="https://www.wwarn.org/repository/atombeat/content/studies/JGZGH.atom"
    value="https://balbo.well.ox.ac.uk/repository/atombeat/content/studies/JGZGH.atom"
+   value="http://localhost:8080/atomscraper/testdata/studies/KHDXJ.xml" 
  -->   
  <input type="text" name="uri" id="uri" size="60"
-    value="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.xml" />
+   value="http://balbo.well.ox.ac.uk/timp/test.xml"
  />
- <input type="submit" value="Flatten" onClick="submitted();" id="flatten" name="flatten"/>
+ <input type="button" value="Flatten" onClick="submitted();" id="flatten" name="flatten" />
 </form>
+</div>
+<div id="DataUriSchemeNotSupported" style="visibility:hidden;">
+Additional functionality not available in this browser.
+</div>
 <pre id="console" />
-
+</div>
 
 
 </html>
