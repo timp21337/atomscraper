@@ -4,6 +4,9 @@
 <script type="text/javascript">
 var logOutput = "";
 var startDate = new Date();
+if(!startDate){
+	throw new Error("no Date()");
+}
 var start = startDate.getTime();
 var outstandingAsynchCalls = 0;
 var columns = new Array();
@@ -15,28 +18,37 @@ function load(uri) {
     log("start:" + start);
     loadXMLDoc("",columns, values, uri);
     log("end:" + sinceStart());
-  } catch (e) { alert (e.description);}
+  } catch (e) {
+  	  var alertText = "Error: ";
+  	  if(e.lineNumber) 
+  	  	alertText + " line " + e.lineNumber + " ";
+  	  if (e.description) 
+  	  	alertText + e.description;
+  	  else
+  	  	alertText += e;
+      alert (alertText);
+  }
 }
 function setDocumentContent() { 
-	if (outstandingAsynchCalls == 0) {
-		if (isDataUriSchemeSupported()) { 
-		window.location.href='data:text/csv;charset=utf-8,' + 
-      encodeURIComponent(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n"); 
-	// This also works, both methods require popup unblocking
-	  //  var win = window.open(
-	  //      'data:text/csv;charset=utf-8,' + 
-	  //       encodeURIComponent(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n"),
-	  //    'jsTest'
-	  //   );
-		} else {
-		  var win = window.open();
-		  var csv = win.document;
-		  csv.open("text/csv", "replace");
-			csv.write(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n");
+  if (outstandingAsynchCalls == 0) {
+    if (isDataUriSchemeSupported()) { 
+      window.location.href='data:text/csv;charset=utf-8,' + 
+        encodeURIComponent(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n"); 
+  // This also works, both methods require popup unblocking
+    //  var win = window.open(
+    //      'data:text/csv;charset=utf-8,' + 
+    //       encodeURIComponent(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n"),
+    //    'jsTest'
+    //   );
+    } else {
+      var win = window.open();
+      var csv = win.document;
+      csv.open("text/csv", "replace");
+      csv.write(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n");
       csv.close();
-		} 
+    } 
   } 
-	
+  
 }
 function quotedJoin(arrayIn) {
   var returnString = "";
@@ -48,8 +60,8 @@ function quotedJoin(arrayIn) {
   return returnString;
 }
 function loadXMLDoc(pathToNode, columns, values, url) {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange=function(){
+  var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	 xhr.onreadystatechange=function(){
     log("onreadystatechange:" + sinceStart());
     if (xhr.readyState==4) {
       if(xhr.status==200) {
@@ -63,9 +75,13 @@ function loadXMLDoc(pathToNode, columns, values, url) {
           }
           else // Internet Explorer
           {
+          	
             xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-            xmlDoc.async="false";
-            xmlDoc.loadXML(xhr.responseText);
+            if (xmlDoc) {
+              xmlDoc.async="false";
+              xmlDoc.loadXML(xhr.responseText);
+            } else 
+              throw new Error("xmlDoc null, MS faked");
           }
           if (xmlDoc.documentElement == undefined) {
             throw new Error("xmlDoc.documentElement still null");
@@ -82,10 +98,10 @@ function loadXMLDoc(pathToNode, columns, values, url) {
 
         log("done:" + sinceStart());
       } else {
-    	  if(xhr.status==0)
-    	    throw new Error("Unexpected http status: " +  xhr.status + "; are you authorised?");
-    	  else
-    	    throw new Error("Unexpected http status: " +  xhr.status);
+        if(xhr.status==0)
+          throw new Error("Unexpected http status: " +  xhr.status + "; are you authorised?");
+        else
+          throw new Error("Unexpected http status: " +  xhr.status);
       }
       outstandingAsynchCalls--;  
       setDocumentContent();
@@ -105,59 +121,59 @@ function loadXMLDoc(pathToNode, columns, values, url) {
 function flatten(pathToValue, columns, values, element) { 
   log("dump\n" + dump(element));
   log("flatten in :" + sinceStart());
-		var kids = element.childNodes;
-		if (kids.length == 1) {
-			// element is a leaf
-			// If there are no Child Elements then 
-			// the first child will be a text one
-			var textContent = element.childNodes[0];
-			if (textContent== undefined){
-			  throw new Error("Node zero undefined ");
+    var kids = element.childNodes;
+    if (kids.length == 1) {
+      // element is a leaf
+      // If there are no Child Elements then 
+      // the first child will be a text one
+      var textContent = element.childNodes[0];
+      if (!textContent){
+        throw new Error("Node zero undefined ");
    } else {
-  			if (trim(textContent.nodeValue) != "") { 
-  	      columns[columns.length] = pathToValue;
+        if (trim(textContent.nodeValue) != "") { 
+          columns[columns.length] = pathToValue;
           values[values.length] = textContent.nodeValue;
         } 
-  	  }
-		}
-		else {
-			// element is not a leaf, recurse
-			var counts = {};
-			
+      }
+    }
+    else {
+      // element is not a leaf, recurse
+      var counts = {};
+      
       for (var i = 0; i < kids.length; i++){
-			  var kid = kids[i];
-			 	var name = kid.nodeName;
+        var kid = kids[i];
+         var name = kid.nodeName;
 
-			  if (name == "#text" && kid.nodeValue) { 
-			    if(trim(kid.nodeValue) != "" ) 
-			      throw new Error("found text when kids length =  " + kids.length);
-  			} else if (name == undefined) {
-  			  throw new Error("undefined at " + i + " when kids length =  " + kids.length);
-  			} else	if (name == "atom:link") {
-  			  if (kid.getAttribute("rel") == "http://www.cggh.org/2010/chassis/terms/studyInfo") { 
-    			  var linkUrl = kid.getAttribute("href");
-  			    loadXMLDoc(pathToValue + ".", columns, values, linkUrl)
-  			  }
-  			} else {
-  			 	if (counts[name])
-		  	 	 	counts[name] = counts[name]+1;
-			   	else 
-			   	  counts[name] = 1;
-				
-			   	var newContext = pathToValue + "." + name + "/" + counts[name];
-			   	flatten(newContext, columns, values, kid);
-	
-		  	}
-		 }
+        if (name == "#text" && kid.nodeValue) { 
+          if(trim(kid.nodeValue) != "" ) 
+            throw new Error("found text when kids length =  " + kids.length);
+        } else if (name == undefined) {
+          throw new Error("undefined at " + i + " when kids length =  " + kids.length);
+        } else  if (name == "atom:link") {
+          if (kid.getAttribute("rel") == "http://www.cggh.org/2010/chassis/terms/studyInfo") { 
+            var linkUrl = kid.getAttribute("href");
+            loadXMLDoc(pathToValue + ".", columns, values, linkUrl)
+          }
+        } else {
+           if (counts[name])
+              counts[name] = counts[name]+1;
+           else 
+             counts[name] = 1;
+        
+           var newContext = pathToValue + "." + name + "/" + counts[name];
+           flatten(newContext, columns, values, kid);
+  
+        }
+     }
      log("flatten out :"+ sinceStart());
-		}
+    }
 
 }
 function log(text){ 
   message("Log", text);
 }
 function message(type, text) { 
-    logOutput = logOutput + "<br/>\n" + type + ":" + text;      	
+    logOutput = logOutput + "<br/>\n" + type + ":" + text;        
 }
 function dump(node) {
   var returnString = node.nodeName + "(" + node.nodeType+")=" + node.nodeValue + "\n";
@@ -168,7 +184,7 @@ function dump(node) {
   }
   return returnString; 
 }
-function trim (str) {
+function trim(str) {
   if (str==null) return "";
   var  str = str.replace(/^\s\s*/, ''),
        ws = /\s/,
@@ -191,7 +207,7 @@ function sinceStart() {
 function submitted() { 
   load(document.flattenerForm.uri.value);
   //document.getElementById("console").innerHTML = logOutput;
-	 return false;
+   return false;
 }
 function loaded() { // Exclude MS, ok for Firefox, Chrome, Opera, Safari
   if (window.XMLHttpRequest) 
