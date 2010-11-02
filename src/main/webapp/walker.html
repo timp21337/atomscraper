@@ -19,18 +19,34 @@ function load(uri) {
 }
 function setDocumentContent() { 
 	if (outstandingAsynchCalls == 0) {
+		if (isDataUriSchemeSupported()) { 
 		window.location.href='data:text/csv;charset=utf-8,' + 
-      encodeURIComponent(columns.join(",") + "\n" + values.join(",") + "\n"); 
+      encodeURIComponent(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n"); 
 	// This also works, both methods require popup unblocking
-  //  var win = window.open(
-  //      'data:text/csv;charset=utf-8,' + 
-  //       encodeURIComponent(columns.join(",") + "\n" + values.join(",") + "\n"),
-  //    'jsTest'
-  //   );
+	  //  var win = window.open(
+	  //      'data:text/csv;charset=utf-8,' + 
+	  //       encodeURIComponent(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n"),
+	  //    'jsTest'
+	  //   );
+		} else {
+		  var win = window.open();
+		  var csv = win.document;
+		  csv.open("text/csv", "replace");
+			csv.write(quotedJoin(columns) + "\n" + quotedJoin(values) + "\n");
+      csv.close();
+		} 
   } 
 	
 }
-
+function quotedJoin(arrayIn) {
+  var returnString = "";
+  for (var i = 0; i < arrayIn.length; i++) {
+    if (returnString != "") 
+      returnString = returnString + ",";
+    returnString = returnString + '"' + arrayIn[i] + '"';  
+  }
+  return returnString;
+}
 function loadXMLDoc(pathToNode, columns, values, url) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange=function(){
@@ -163,14 +179,9 @@ function trim (str) {
 function isDataUriSchemeSupported() { 
   if(/msie/i.test(navigator.userAgent) ) 
     return false; // IE does nto allow navigation to data urls
-  var data = new Image();
-  var is = true;
-  data.onload = data.onerror = function(){
-    if(this.width != 1 || this.height != 1)
-      is = false;
-  }
-  data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-  return is;  
+  if(/chrome/i.test(navigator.userAgent) ) 
+      return false; // Chrome seems to fail
+  return true;  
 }
 function sinceStart() {
   var nowDate = new Date();
@@ -183,9 +194,9 @@ function submitted() {
 	 return false;
 }
 function loaded() { // Exclude MS, ok for Firefox, Chrome, Opera, Safari
-  if (window.XMLHttpRequest && isDataUriSchemeSupported()) {
+  if (window.XMLHttpRequest) 
     document.getElementById("DataUriSchemeSupported").style.visibility = "visible";
-  } else // MS Browsers 
+  else // Old Browsers 
     document.getElementById("DataUriSchemeNotSupported").style.visibility = "visible";
 }
 </script>
