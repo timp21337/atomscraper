@@ -8,5 +8,5 @@
   <tentacles/>
   </grandchild>
  </child>
- <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns"  atombeat:allow="GET, PUT, DELETE" rel="http://www.cggh.org/2010/chassis/terms/studyInfo" href="http://localhost:8080/atomscraper/testChild.xml" type="application/atom+xml;type=entry"/>
+ <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns"  atombeat:allow="GET, PUT, DELETE" rel="http://www.cggh.org/2010/chassis/terms/studyInfo" href="testChild.xml" type="application/atom+xml;type=entry"/>
 </atom:entry>

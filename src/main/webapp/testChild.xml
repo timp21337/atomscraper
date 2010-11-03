@@ -8,4 +8,11 @@
    <tentacles>8</tentacles>
    </grandchild>
  </child2>
+ <child2 att1="2">
+  <grandchild>
+   <nose>long</nose>
+   <eyes>blue</eyes>
+   <tentacles>8</tentacles>
+   </grandchild>
+ </child2>
 </ctop>
