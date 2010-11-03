@@ -63,7 +63,7 @@ public class Flattener {
 		ArrayList<String> cols = new ArrayList<String>();
 		ArrayList<String> vals = new ArrayList<String>();
 		
-		flatten(context, cols, vals, d.getDocumentElement());
+		flatten(context, cols, vals, e);
 
 		return serialize(cols, vals);
 	}
