@@ -2,31 +2,28 @@
 // Author timp
 // November 2010
 
-var logOutput = "";
 var startDate = new Date();
 var start = startDate.getTime();
 var outstandingAsynchCalls = 0;
 var columns = new Array();
 var values = new Array();
+var followableLinkTypes = new Array();
+followableLinkTypes["http://www.cggh.org/2010/chassis/terms/studyInfo"] = true;
 
-
-function load(uri) {
-  logOutput = "";
+function flattenAtomEntry(uri) {
   startDate = new Date();
   start = startDate.getTime();
   outstandingAsynchCalls = 0;
   columns = new Array();
   values = new Array();
   try {
-    log("start:" + start);
     loadXMLDoc("",columns, values, uri);
-    log("end:" + sinceStart());
   } catch (e) {
       var alertText = "Error: ";
       if(e.lineNumber) 
-        alertText + " line " + e.lineNumber + " ";
+        alertText += " line " + e.lineNumber + " ";
       if (e.description) 
-        alertText + e.description;
+        alertText += e.description;
       else
         alertText += e;
       alert (alertText);
@@ -71,82 +68,60 @@ function loadXMLDoc(pathToNode, columns, values, urlIn) {
   };
   var deferred = dojo.xhrGet(xhrArgs);
 
-  //On success we'll process the doc and generate the JavaScript model
   deferred.addCallback(function(xmlDoc, ioargs) {
-    flatten(pathToNode, columns, values, xmlDoc.documentElement);
-    outstandingAsynchCalls--;  
-    setDocumentContent();
-    }
-  );
+      flatten(pathToNode + xmlDoc.documentElement.nodeName + "[1]", columns, values, xmlDoc.documentElement);
+      outstandingAsynchCalls--;  
+      setDocumentContent();
+    });
   deferred.addErrback(function(error) {
-    console.debug(error);
-  });
+      console.debug(error);
+    });
   
 }
 
 function flatten(pathToValue, columns, values, element) { 
-  //alert("Columns:" + columns.length);
   var kids = element.childNodes;
   if (kids.length == 1 && element.childNodes[0].nodeType == 3) {
     // element is a leaf
-    // If there are no Child Elements then 
-    // the first child will be a text one
     var textContent = element.childNodes[0];
-    if (!textContent) {
-      throw new Error("Node zero undefined ");
-    } else {
-      if (trim(textContent.nodeValue) != "") { 
-        columns.push(pathToValue);
-        values.push(textContent.nodeValue);
-      } 
+    if (trim(textContent.nodeValue) != "") { 
+      columns.push(pathToValue);
+      values.push(textContent.nodeValue);
     }
   } else {
     // element is not a leaf, recurse
+        
     var counts = {};
       
     for (var i = 0; i < kids.length; i++){
       var kid = kids[i];
-      var name = kid.nodeName;
+      var kidName = kid.nodeName;
 
-      if (name == "#text" && kid.nodeValue) { 
+      if (kidName == "#text" && kid.nodeValue) { 
         if(trim(kid.nodeValue) != "" ) 
             throw new Error("found text when kids length =  " + kids.length);
-      } else if (name == undefined) {
+      } else if (kidName == undefined) {
           throw new Error("undefined at " + i + " when kids length =  " + kids.length);
-      } else  if (name == "atom:link") {
-        if (kid.getAttribute("rel") == "http://www.cggh.org/2010/chassis/terms/studyInfo") { 
+      } else  if (kidName == "atom:link") {
+        var rel = kid.getAttribute("rel"); 
+        if (followableLinkTypes[rel]) { 
           var linkUrl = kid.getAttribute("href");
-          loadXMLDoc(pathToValue, columns, values, linkUrl)
+          // We could wrap pathToValue in another atom:link here
+          // but then we would need to keep track of number of links
+          loadXMLDoc(pathToValue + "/", columns, values, linkUrl)
         }
       } else {
-        if (counts[name])
-          counts[name] = counts[name]+1;
+        if (counts[kidName])
+          counts[kidName] = counts[kidName]+1;
         else 
-          counts[name] = 1;
+          counts[kidName] = 1;
         
-        var newContext = pathToValue == "" ? "" : pathToValue + ".";
-        newContext = newContext + name + "/" + counts[name];
+        var newContext = pathToValue + "/" + kidName + "[" + counts[kidName] + "]";
         flatten(newContext, columns, values, kid);
   
       }
     }
   }
-}
-
-function log(text){ 
-  message("Log", text);
-}
-function message(type, text) { 
-    logOutput = logOutput + "<br/>\n" + type + ":" + text;        
-}
-function dump(node) {
-  var returnString = node.nodeName + "(" + node.nodeType+")=" + node.nodeValue + "\n";
-  var kids = node.childNodes;
-  returnString = returnString + "length:"  + kids.length +"\n";
-  for (var i = 0; i < kids.length; i++){
-    returnString = returnString + "--" +  i + ")" + kids[i].nodeName + "(" + kids[i].nodeType + ")=" + kids[i].nodeValue + "\n";
-  }
-  return returnString; 
 }
 function trim(str) {
   if (str==null) return "";
@@ -158,7 +133,7 @@ function trim(str) {
 }
 function isDataUriSchemeSupported() { 
   if(/msie/i.test(navigator.userAgent) ) 
-    return false; // IE does nto allow navigation to data urls
+    return false; // IE does not allow navigation to data urls
   if(/chrome/i.test(navigator.userAgent) ) 
       return false; // Chrome seems to fail
   return true;  
