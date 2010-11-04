@@ -135,11 +135,7 @@ function isDataUriSchemeSupported() {
   if(/msie/i.test(navigator.userAgent) ) 
     return false; // IE does not allow navigation to data urls
   if(/chrome/i.test(navigator.userAgent) ) 
-      return false; // Chrome seems to fail
+    return false; // Chrome seems to fail as well
   return true;  
-}
-function sinceStart() {
-  var nowDate = new Date();
-  return  nowDate.getTime() - start; 
 }
 
