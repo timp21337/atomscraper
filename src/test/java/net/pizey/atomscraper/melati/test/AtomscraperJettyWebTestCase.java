@@ -108,7 +108,6 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
     setScriptingEnabled(true);
     beginAt("/walker.html");
     clickButton("flatten");
-    dumpHtml();
   }
 
 

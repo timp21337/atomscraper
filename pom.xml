@@ -23,7 +23,7 @@ scm:cvs:ext:timp@paneris.net:/usr/cvsroot:atomscraper
     </developerConnection>
 
     <url>
-      http://paneris.net/cgi-bin/cvsweb.cgi/atomscraper/
+      https://github.com/timp21337/atomscraper
     </url>
   </scm>
   <mailingLists>
