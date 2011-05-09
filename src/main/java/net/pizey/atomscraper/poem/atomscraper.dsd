@@ -1,5 +1,5 @@
 /*
- * DSD for jdbc:postgresql:atomscraper (net.pizey.atomscraper.poem.AtomscraperDatabase)
+ * DSD for jdbc:hsqldb:mem:atomscraper (net.pizey.atomscraper.poem.AtomscraperDatabase)
  * 
  *  Generated for _guest_
  * 
@@ -19,5 +19,6 @@
  */
 
 package net.pizey.atomscraper.poem;
+
 
 
