@@ -33,6 +33,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
+ * Get and persist an entry.
  * @author timp
  * 
  */
@@ -40,9 +41,6 @@ public class Entry extends AtomscraperServlet {
 
   private static final long serialVersionUID = 5928430778760420797L;
 
-  /**
-   * Get and persist an entry.
-   */
   public Entry() {
   }
 
@@ -179,6 +177,9 @@ public class Entry extends AtomscraperServlet {
         setField(persistent, 
             cleanName(element.getNodeName()), 
             kid.getNodeValue(), "Value");
+
+        persistent.getTable().setDisplayColumn(persistent.getTable().getColumn(cleanName(element.getNodeName())));
+        
     } else { 
       for (int i = 0; i < kids.getLength(); i++) {
         Node kid = kids.item(i);
