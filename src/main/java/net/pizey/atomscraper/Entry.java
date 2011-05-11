@@ -140,7 +140,8 @@ public class Entry extends AtomscraperServlet {
     if (p.getTable().getName().equals("atom_link")) {
       if (p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/studyInfo")
           || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia)")){
-                // FIXME Just for now addChild(p, parseEntry(database, p.getField("href").getCookedString()));
+                // FIXME Just for now 
+        addChild(p, parseEntry(database, p.getField("href").getCookedString()));
       }
     }
     
