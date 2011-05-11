@@ -7,9 +7,11 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.cggh.casutils.CasProtectedResourceDownloader;
 import org.melati.Melati;
 import org.melati.PoemContext;
 import org.melati.admin.AdminUtils;
+import org.melati.poem.Column;
 import org.melati.poem.ColumnInfo;
 import org.melati.poem.Database;
 import org.melati.poem.DisplayLevel;
@@ -106,6 +108,9 @@ public class Entry extends AtomscraperServlet {
 
   private Persistent parseEntry(Database database, String uri) throws Exception {
 
+    if (uri.startsWith("http://cloud1.cggh.org/repository")) 
+      uri = CasProtectedResourceDownloader.download(uri);
+    System.err.println("Downloading " + uri);
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     documentBuilderFactory.setIgnoringComments(true);
     
@@ -135,7 +140,7 @@ public class Entry extends AtomscraperServlet {
     if (p.getTable().getName().equals("atom_link")) {
       if (p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/studyInfo")
           || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia)")){
-                // FIXME Just fo rnow addChild(p, parseEntry(database, p.getField("href").getCookedString()));
+                // FIXME Just for now addChild(p, parseEntry(database, p.getField("href").getCookedString()));
       }
     }
     
@@ -178,7 +183,7 @@ public class Entry extends AtomscraperServlet {
             cleanName(element.getNodeName()), 
             kid.getNodeValue(), "Value");
 
-        persistent.getTable().setDisplayColumn(persistent.getTable().getColumn(cleanName(element.getNodeName())));
+
         
     } else { 
       for (int i = 0; i < kids.getLength(); i++) {
@@ -189,7 +194,8 @@ public class Entry extends AtomscraperServlet {
           setField(persistent, 
               cleanName(kid.getNodeName()), 
               grandChildren.item(0).getNodeValue(), "Value2");
-          
+          System.err.println("Setting display column:" + persistent.getTable().getColumn(cleanName(kid.getNodeName())));
+          persistent.getTable().setDisplayColumn(persistent.getTable().getColumn(cleanName(kid.getNodeName())));          
         } else if (kid.getNodeType() == Node.ELEMENT_NODE) {
                Persistent child = persist(database, (Element)kid);
                System.err.println("Created: " + child.displayString());
@@ -280,7 +286,8 @@ public class Entry extends AtomscraperServlet {
 
   private static void addColumn(Table table, String name, Class<?> fieldClass,
       boolean hasSetter, String description, Integer referenceColumnTroid) {
-    System.err.println("Adding colum " + name + " to " + table.getName());
+    System.err.println("Adding colum " + name + " to " + table.getName() + " current display col " + table.displayColumn());
+    
     ColumnInfo columnInfo = (ColumnInfo) table.getDatabase()
         .getColumnInfoTable().newPersistent();
     columnInfo.setTableinfo(table.getInfo());
@@ -300,7 +307,10 @@ public class Entry extends AtomscraperServlet {
     columnInfo.setPrecision(0);
     columnInfo.setScale(0);
     columnInfo.setNullable(true);
-    columnInfo.setDisplaylevel(DisplayLevel.record);
+    if (table.displayColumn().isTroidColumn())
+      columnInfo.setDisplaylevel(DisplayLevel.primary);
+    else
+      columnInfo.setDisplaylevel(DisplayLevel.record);
     if (fieldClass == java.lang.Boolean.class) {
       columnInfo.setTypefactory(PoemTypeFactory.BOOLEAN);
       columnInfo.setSize(1);
@@ -342,7 +352,11 @@ public class Entry extends AtomscraperServlet {
       throw new RuntimeException("Unexpected class " + fieldClass.getName());
     }
     columnInfo.makePersistent();
-    table.addColumnAndCommit(columnInfo);
+    Column column = table.addColumnAndCommit(columnInfo);
+    if (table.displayColumn().isTroidColumn()) {
+      table.setDisplayColumn(column);
+    }
+
   }
 
 }
