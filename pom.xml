@@ -103,7 +103,11 @@ http://sourceforge.net/mailarchive/forum.php?forum=melati-users
       <version>0.7.8-RC3-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.cggh</groupId>
+      <artifactId>casutils</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -290,6 +294,7 @@ http://sourceforge.net/mailarchive/forum.php?forum=melati-users
     <plugin>
      <groupId>org.mortbay.jetty</groupId>
      <artifactId>maven-jetty-plugin</artifactId>
+     <version>6.1.10</version>
       <configuration>
         <contextPath>/</contextPath>
         <scanIntervalSeconds>3</scanIntervalSeconds>
@@ -318,7 +323,31 @@ http://sourceforge.net/mailarchive/forum.php?forum=melati-users
       </plugin>
    </plugins>
   </reporting>
-  <properties>
-        <pDir>/dist/atomscraper</pDir>
-  </properties>
-</project>
+  <distributionManagement>
+    <repository>
+      <id>melati</id>
+      <name>Default Repository</name>
+      <url>scp://melati.org/data/www/maven2/</url>
+    </repository>
+    <site>
+      <id>live</id>
+      <name>Live Site</name>
+      <url>scp://www.paneris.net/data/www/atomscraper/</url>
+    </site>
+  </distributionManagement>  
+  <pluginRepositories>
+    <pluginRepository>
+      <id>melati</id>
+      <name>Melati M2 Repository</name>
+      <url>http://www.melati.org/maven2/</url>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  <repositories>
+    <repository>
+     <id>melati</id>
+     <name>Melati M2 Repository</name>
+     <url>http://www.melati.org/maven2/</url>
+   </repository>
+  </repositories>
+  </project>
