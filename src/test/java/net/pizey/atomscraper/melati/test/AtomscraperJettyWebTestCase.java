@@ -22,12 +22,12 @@ import org.melati.JettyWebTestCase;
  */
 public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
 
-  private int unlikelyPortNo = 8089;
+  private int unlikelyPortNo = 8080;
   
   public AtomscraperJettyWebTestCase(String name) {
     super(name);
     webAppDirName = "src/main/webapp";
-    contextName = "atomscraper";
+    contextName = "";
   }
 
   /**
@@ -79,7 +79,7 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   
   public void testTree() { 
     System.err.println(schlurp("/Login/atomscraper?continuationURL=" + 
-        "/" + contextName +"/Entry/Flat?uri=http://localhost:" + 
+        "/" + contextName + (contextName == "" ? "" : "/") + "Entry/Flat?uri=http://localhost:" + 
         getActualPort() + "/" + contextName + "/testdata/test.xml"));
   }
   
@@ -90,8 +90,8 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   
   public void testEntrySchlurp() {
      assertTrue(schlurp("/Login/atomscraper?continuationURL=" + 
-         "/" + contextName + "/Entry/Flat?uri=http://localhost:" + 
-       getActualPort() + "/" + contextName + "/testdata/studies/KHDXJ.atom").startsWith("\"atom_entry.1.atom_id"));
+         "/" + contextName + (contextName == "" ? "" : "/") + "Entry/Flat?uri=http://localhost:" + 
+       getActualPort() + "/" + contextName + (contextName == "" ? "" : "/") + "testdata/studies/KHDXJ.atom").startsWith("\"atom_entry.1.atom_id"));
   }
 
 

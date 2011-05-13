@@ -139,9 +139,12 @@ public class Entry extends AtomscraperServlet {
     setValues(database, p, element);
     if (p.getTable().getName().equals("atom_link")) {
       if (p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/studyInfo")
-          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia)")){
-                // FIXME Just for now 
+          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia")
+          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/curatedMedia")
+          ){
         addChild(p, parseEntry(database, p.getField("href").getCookedString()));
+      } else {
+        System.err.println("Ignoring rel" +p.getField("rel").getCookedString());
       }
     }
     
@@ -162,9 +165,14 @@ public class Entry extends AtomscraperServlet {
     NamedNodeMap attributes = element.getAttributes();
     for (int i = 0; i < attributes.getLength(); i++) {
       Node attribute = attributes.item(i);
-      DomUtils.dumpAttribute(attribute);
-      setField(persistent, cleanName(attribute.getNodeName()), attribute.getNodeValue(),
-          "Attribute");
+      if (attribute.getNodeName().equals("rel")
+          || attribute.getNodeName().equals("href")
+          || attribute.getNodeName().equals("src")
+      ){
+        DomUtils.dumpAttribute(attribute);
+        setField(persistent, cleanName(attribute.getNodeName()), attribute.getNodeValue(),
+            "Attribute");
+      }
     }
     return attributes.getLength() > 0;
   }
@@ -183,20 +191,21 @@ public class Entry extends AtomscraperServlet {
         setField(persistent, 
             cleanName(element.getNodeName()), 
             kid.getNodeValue(), "Value");
-
-
         
     } else { 
       for (int i = 0; i < kids.getLength(); i++) {
         Node kid = kids.item(i);
-        DomUtils.dumpNode(kid);
+        //DomUtils.dumpNode(kid);
         NodeList grandChildren = kid.getChildNodes();
         if (grandChildren.getLength() == 1 && grandChildren.item(0).getNodeType() == Node.TEXT_NODE) {
           setField(persistent, 
               cleanName(kid.getNodeName()), 
               grandChildren.item(0).getNodeValue(), "Value2");
-          System.err.println("Setting display column:" + persistent.getTable().getColumn(cleanName(kid.getNodeName())));
-          persistent.getTable().setDisplayColumn(persistent.getTable().getColumn(cleanName(kid.getNodeName())));          
+          if (persistent.getTable().displayColumn() == persistent.getTable().troidColumn()
+              || cleanName(kid.getNodeName()).equals("atom_title")) {
+            System.err.println("Setting display column:" + persistent.getTable().getColumn(cleanName(kid.getNodeName())));
+            persistent.getTable().setDisplayColumn(persistent.getTable().getColumn(cleanName(kid.getNodeName())));          
+          }
         } else if (kid.getNodeType() == Node.ELEMENT_NODE) {
                Persistent child = persist(database, (Element)kid);
                System.err.println("Created: " + child.displayString());
@@ -215,7 +224,7 @@ public class Entry extends AtomscraperServlet {
       addColumn(child.getTable(), persistent.getTable().getName(), 
           persistent.getClass(), true, "A reference to a " + persistent.getTable().getName(), 
           persistent.getTable().getInfo().troid().intValue());
-      child.getTable().getColumn(persistent.getTable().getName()).setDisplayLevel(DisplayLevel.detail);
+      child.getTable().getColumn(persistent.getTable().getName()).setDisplayLevel(DisplayLevel.record);
     }
     if (!persistent.statusExistent())
       persistent.makePersistent();
