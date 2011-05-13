@@ -1,0 +1,151 @@
+<atom:feed xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ</atom:id>
+    <atom:updated>2010-10-21T10:56:27.711+01:00</atom:updated>
+    <atom:author>
+        <atom:email>submitter@example.org</atom:email>
+    </atom:author>
+    <atom:title type="text">Curated Media for Study KHDXJ</atom:title>
+    <atombeat:config-link-extensions xmlns:atombeat="http://purl.org/atombeat/xmlns">
+        <atombeat:extension-attribute name="allow" namespace="http://purl.org/atombeat/xmlns">
+            <atombeat:config context="entry-in-feed">
+                <atombeat:param name="match-rels" value="edit-media"/>
+            </atombeat:config>
+        </atombeat:extension-attribute>
+    </atombeat:config-link-extensions>
+    <atom:link rel="self" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ" type="application/atom+xml;type=feed"/>
+    <atom:link rel="edit" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ" type="application/atom+xml;type=feed"/>
+    <atom:link rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry"/>
+    <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ" type="application/atom+xml;type=entry"/>
+    <atom:entry>
+        <manta:id xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns">7ef14a69-a7fd-4348-92ae-84c70962ad18</manta:id>
+        <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom</atom:id>
+        <atom:published>2010-10-21T10:56:27.646+01:00</atom:published>
+        <atom:updated>2010-10-21T10:56:27.711+01:00</atom:updated>
+        <atom:author>
+            <atom:email>curator@wwarn.org</atom:email>
+        </atom:author>
+        <atom:content src="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.media" type="application/octet-stream"/>
+        <atom:title type="text">Artekinstudy1mgkgdhapqp.sav</atom:title>
+        <atom:summary type="text">media resource</atom:summary>
+        <atom:category term="http://www.cggh.org/2010/chassis/terms/DataFile" scheme="http://www.cggh.org/2010/chassis/scheme/FileTypes" label=""/>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom"/>
+        <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, DELETE" rel="edit-media" type="application/octet-stream" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.media" length="97189"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom" type="application/atom+xml;type=entry"/>
+        <atom:link rel="http://purl.org/atombeat/rel/media-security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.media" type="application/atom+xml;type=entry"/>
+        <atom:link xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns" rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry" manta:idref="KHDXJ"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/personalDataReviews" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ?reviewSubject=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derivation" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?output=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derived" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?input=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7ef14a69-a7fd-4348-92ae-84c70962ad18.atom" type="application/atom+xml;type=feed"/>
+    </atom:entry>
+    <atom:entry>
+        <manta:id xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns">7597757b-9f3e-4868-812c-aea02f68eba1</manta:id>
+        <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom</atom:id>
+        <atom:published>2010-10-21T10:56:03.026+01:00</atom:published>
+        <atom:updated>2010-10-21T10:56:03.096+01:00</atom:updated>
+        <atom:author>
+            <atom:email>curator@wwarn.org</atom:email>
+        </atom:author>
+        <atom:content src="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.media" type="application/octet-stream"/>
+        <atom:title type="text">Artekinstudy1drug.sav</atom:title>
+        <atom:summary type="text">media resource</atom:summary>
+        <atom:category term="http://www.cggh.org/2010/chassis/terms/DataFile" scheme="http://www.cggh.org/2010/chassis/scheme/FileTypes" label=""/>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom"/>
+        <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, DELETE" rel="edit-media" type="application/octet-stream" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.media" length="210059"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom" type="application/atom+xml;type=entry"/>
+        <atom:link rel="http://purl.org/atombeat/rel/media-security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.media" type="application/atom+xml;type=entry"/>
+        <atom:link xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns" rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry" manta:idref="KHDXJ"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/personalDataReviews" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ?reviewSubject=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derivation" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?output=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derived" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?input=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/7597757b-9f3e-4868-812c-aea02f68eba1.atom" type="application/atom+xml;type=feed"/>
+    </atom:entry>
+    <atom:entry>
+        <manta:id xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns">f55b2f0d-1386-422e-97f8-a2d00e2477e6</manta:id>
+        <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom</atom:id>
+        <atom:published>2010-10-21T10:55:31.026+01:00</atom:published>
+        <atom:updated>2010-10-21T10:55:31.388+01:00</atom:updated>
+        <atom:author>
+            <atom:email>curator@wwarn.org</atom:email>
+        </atom:author>
+        <atom:content src="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.media" type="application/octet-stream"/>
+        <atom:title type="text">Artekinstudy1base.sav</atom:title>
+        <atom:summary type="text">media resource</atom:summary>
+        <atom:category term="http://www.cggh.org/2010/chassis/terms/DataFile" scheme="http://www.cggh.org/2010/chassis/scheme/FileTypes" label=""/>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom"/>
+        <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, DELETE" rel="edit-media" type="application/octet-stream" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.media" length="123747"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom" type="application/atom+xml;type=entry"/>
+        <atom:link rel="http://purl.org/atombeat/rel/media-security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.media" type="application/atom+xml;type=entry"/>
+        <atom:link xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns" rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry" manta:idref="KHDXJ"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/personalDataReviews" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ?reviewSubject=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derivation" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?output=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derived" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?input=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/f55b2f0d-1386-422e-97f8-a2d00e2477e6.atom" type="application/atom+xml;type=feed"/>
+    </atom:entry>
+    <atom:entry>
+        <manta:id xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns">807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93</manta:id>
+        <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom</atom:id>
+        <atom:published>2010-10-06T12:00:48.298+01:00</atom:published>
+        <atom:updated>2010-10-06T12:00:48.298+01:00</atom:updated>
+        <atom:content src="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.media" type="application/octet-stream"/>
+        <atom:title type="text">Artekinstudy1base.xlsx</atom:title>
+        <atom:summary type="text">media resource</atom:summary>
+        <atom:category scheme="http://www.cggh.org/2010/chassis/scheme/FileTypes" term="http://www.cggh.org/2010/chassis/terms/DataFile" label=""/>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom"/>
+        <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, DELETE" rel="edit-media" type="application/octet-stream" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.media" length="180932"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom" type="application/atom+xml;type=entry"/>
+        <atom:link rel="http://purl.org/atombeat/rel/media-security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.media" type="application/atom+xml;type=entry"/>
+        <atom:link xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns" rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry" manta:idref="KHDXJ"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/personalDataReviews" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ?reviewSubject=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derivation" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?output=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derived" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?input=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/807ae9fd-93f6-4ee1-a3a6-0bd4b558ae93.atom" type="application/atom+xml;type=feed"/>
+    </atom:entry>
+    <atom:entry>
+        <manta:id xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns">10826371-7c3e-484e-b2f4-4ff4e6b2ce8c</manta:id>
+        <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom</atom:id>
+        <atom:published>2010-10-06T11:59:47.381+01:00</atom:published>
+        <atom:updated>2010-10-06T11:59:47.381+01:00</atom:updated>
+        <atom:content src="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.media" type="application/octet-stream"/>
+        <atom:title type="text">Artekinstudy1drug.xlsx</atom:title>
+        <atom:summary type="text">media resource</atom:summary>
+        <atom:category scheme="http://www.cggh.org/2010/chassis/scheme/FileTypes" term="http://www.cggh.org/2010/chassis/terms/DataFile" label=""/>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom"/>
+        <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, DELETE" rel="edit-media" type="application/octet-stream" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.media" length="220096"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom" type="application/atom+xml;type=entry"/>
+        <atom:link rel="http://purl.org/atombeat/rel/media-security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.media" type="application/atom+xml;type=entry"/>
+        <atom:link xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns" rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry" manta:idref="KHDXJ"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/personalDataReviews" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ?reviewSubject=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derivation" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?output=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derived" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?input=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/10826371-7c3e-484e-b2f4-4ff4e6b2ce8c.atom" type="application/atom+xml;type=feed"/>
+    </atom:entry>
+    <atom:entry>
+        <manta:id xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns">bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2</manta:id>
+        <atom:id>http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom</atom:id>
+        <atom:published>2010-10-06T11:55:45.228+01:00</atom:published>
+        <atom:updated>2010-10-06T11:55:45.228+01:00</atom:updated>
+        <atom:content src="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.media" type="application/octet-stream"/>
+        <atom:title type="text">Artekinstudy1mgkgdhapqp.xlsx</atom:title>
+        <atom:summary type="text">media resource</atom:summary>
+        <atom:category scheme="http://www.cggh.org/2010/chassis/scheme/FileTypes" term="http://www.cggh.org/2010/chassis/terms/DataFile" label=""/>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom"/>
+        <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, DELETE" rel="edit-media" type="application/octet-stream" href="http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.media" length="96465"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom" type="application/atom+xml;type=entry"/>
+        <atom:link rel="http://purl.org/atombeat/rel/media-security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.media" type="application/atom+xml;type=entry"/>
+        <atom:link xmlns:manta="http://www.cggh.org/2010/chassis/manta/xmlns" rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry" manta:idref="KHDXJ"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/personalDataReviews" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ?reviewSubject=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derivation" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?output=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom" type="application/atom+xml;type=feed"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/derived" href="http://localhost:8089/atomscraper/testdata/derivations/KHDXJ?input=http://localhost:8089/atomscraper/testdata/media/curated/KHDXJ/bdbd0e47-2d5e-4e2e-9ed2-c1f3e9c716b2.atom" type="application/atom+xml;type=feed"/>
+    </atom:entry>
+</atom:feed>

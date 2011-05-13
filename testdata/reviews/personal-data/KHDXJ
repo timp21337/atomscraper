@@ -1,0 +1,373 @@
+<atom:feed xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ</atom:id>
+    <atom:updated>2010-10-05T14:30:54.499+01:00</atom:updated>
+    <atom:author>
+        <atom:email>submitter@example.org</atom:email>
+    </atom:author>
+    <atom:title type="text">Personal Data Reviews for Study KHDXJ</atom:title>
+    <atom:link rel="self" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ" type="application/atom+xml;type=feed"/>
+    <atom:link rel="edit" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ" type="application/atom+xml;type=feed"/>
+    <atom:link rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8089/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry"/>
+    <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ" type="application/atom+xml;type=entry"/>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/20226622-2249-4488-b5fc-83fa711c2cf0.atom</atom:id>
+        <atom:published>2010-10-05T14:30:54.499+01:00</atom:published>
+        <atom:updated>2010-10-05T14:30:54.499+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 51706852-704a-42a2-aec7-a224772b3245</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/20226622-2249-4488-b5fc-83fa711c2cf0.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/20226622-2249-4488-b5fc-83fa711c2cf0.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/51706852-704a-42a2-aec7-a224772b3245.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/20226622-2249-4488-b5fc-83fa711c2cf0.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/25b3fc48-a6f7-4d19-8884-fe02d2ce1752.atom</atom:id>
+        <atom:published>2010-10-05T14:30:37.648+01:00</atom:published>
+        <atom:updated>2010-10-05T14:30:37.648+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 565ac35c-3861-438b-9cab-e069a15d1be2</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/25b3fc48-a6f7-4d19-8884-fe02d2ce1752.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/25b3fc48-a6f7-4d19-8884-fe02d2ce1752.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/565ac35c-3861-438b-9cab-e069a15d1be2.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/25b3fc48-a6f7-4d19-8884-fe02d2ce1752.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/b97ec8cc-167b-408a-8113-682634cc2651.atom</atom:id>
+        <atom:published>2010-10-05T14:29:58.544+01:00</atom:published>
+        <atom:updated>2010-10-05T14:29:58.544+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 184795a9-21a7-41eb-8c54-3aa051113a21</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>fail</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/b97ec8cc-167b-408a-8113-682634cc2651.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/b97ec8cc-167b-408a-8113-682634cc2651.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/184795a9-21a7-41eb-8c54-3aa051113a21.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/b97ec8cc-167b-408a-8113-682634cc2651.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/18e492c7-8669-4b9a-af12-0c3b54bc9f83.atom</atom:id>
+        <atom:published>2010-10-05T14:29:30.989+01:00</atom:published>
+        <atom:updated>2010-10-05T14:29:30.989+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file bb310e8c-f7b7-4c5d-9dfe-8e1443d390a2</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>fail</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/18e492c7-8669-4b9a-af12-0c3b54bc9f83.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/18e492c7-8669-4b9a-af12-0c3b54bc9f83.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/bb310e8c-f7b7-4c5d-9dfe-8e1443d390a2.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/18e492c7-8669-4b9a-af12-0c3b54bc9f83.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/449d85ea-25d4-4d7c-a182-99a21713ef29.atom</atom:id>
+        <atom:published>2010-10-05T14:28:49.211+01:00</atom:published>
+        <atom:updated>2010-10-05T14:28:49.211+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 5b353304-7d46-45c4-b79c-1b19a9252f4f</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/449d85ea-25d4-4d7c-a182-99a21713ef29.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/449d85ea-25d4-4d7c-a182-99a21713ef29.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/5b353304-7d46-45c4-b79c-1b19a9252f4f.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/449d85ea-25d4-4d7c-a182-99a21713ef29.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/713acda3-406c-41f8-84ff-e6a051d0b736.atom</atom:id>
+        <atom:published>2010-10-05T14:27:39.375+01:00</atom:published>
+        <atom:updated>2010-10-05T14:27:39.375+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 91e926dd-162b-4d71-b585-d87bb81a16e2</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>fail</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/713acda3-406c-41f8-84ff-e6a051d0b736.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/713acda3-406c-41f8-84ff-e6a051d0b736.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/91e926dd-162b-4d71-b585-d87bb81a16e2.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/713acda3-406c-41f8-84ff-e6a051d0b736.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/5eb18df5-448f-4367-af7d-83d06d777ecf.atom</atom:id>
+        <atom:published>2010-10-05T14:27:00.755+01:00</atom:published>
+        <atom:updated>2010-10-05T14:27:00.755+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 86b69880-0cff-41d9-8b1d-3d5ea65d291d</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/5eb18df5-448f-4367-af7d-83d06d777ecf.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/5eb18df5-448f-4367-af7d-83d06d777ecf.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/86b69880-0cff-41d9-8b1d-3d5ea65d291d.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/5eb18df5-448f-4367-af7d-83d06d777ecf.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/b3a81ea0-fc2e-4fed-b147-2395bac5d71d.atom</atom:id>
+        <atom:published>2010-10-05T14:26:14.113+01:00</atom:published>
+        <atom:updated>2010-10-05T14:26:14.113+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file d38e0e53-fbf2-46be-b04a-0efa6294e9cf</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/b3a81ea0-fc2e-4fed-b147-2395bac5d71d.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/b3a81ea0-fc2e-4fed-b147-2395bac5d71d.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/d38e0e53-fbf2-46be-b04a-0efa6294e9cf.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/b3a81ea0-fc2e-4fed-b147-2395bac5d71d.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/f751422c-921e-45eb-b32f-3096c485afdd.atom</atom:id>
+        <atom:published>2010-10-05T14:25:32.124+01:00</atom:published>
+        <atom:updated>2010-10-05T14:25:32.124+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 3dc054c6-54f5-41be-aa9a-b90a081861dd</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/f751422c-921e-45eb-b32f-3096c485afdd.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/f751422c-921e-45eb-b32f-3096c485afdd.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/3dc054c6-54f5-41be-aa9a-b90a081861dd.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/f751422c-921e-45eb-b32f-3096c485afdd.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/2976b946-06f4-4966-ade1-79328ad841b5.atom</atom:id>
+        <atom:published>2010-10-05T14:24:37.265+01:00</atom:published>
+        <atom:updated>2010-10-05T14:24:37.265+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 2477c102-9ea1-4611-a7b1-b4b06c600db3</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/2976b946-06f4-4966-ade1-79328ad841b5.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/2976b946-06f4-4966-ade1-79328ad841b5.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/2477c102-9ea1-4611-a7b1-b4b06c600db3.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/2976b946-06f4-4966-ade1-79328ad841b5.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/8c70da26-92e8-4921-9476-142ecaec9f01.atom</atom:id>
+        <atom:published>2010-10-05T14:23:52.655+01:00</atom:published>
+        <atom:updated>2010-10-05T14:23:52.655+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 9370c011-1f95-411f-a3c8-76f935997715</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/8c70da26-92e8-4921-9476-142ecaec9f01.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/8c70da26-92e8-4921-9476-142ecaec9f01.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/9370c011-1f95-411f-a3c8-76f935997715.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/8c70da26-92e8-4921-9476-142ecaec9f01.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/a00632a0-9798-4a34-aa99-2ce86ed278bf.atom</atom:id>
+        <atom:published>2010-10-05T14:22:58.767+01:00</atom:published>
+        <atom:updated>2010-10-05T14:22:58.767+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file e4fe0841-913f-4c21-a6bd-8b32f41fa18f</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/a00632a0-9798-4a34-aa99-2ce86ed278bf.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/a00632a0-9798-4a34-aa99-2ce86ed278bf.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/e4fe0841-913f-4c21-a6bd-8b32f41fa18f.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/a00632a0-9798-4a34-aa99-2ce86ed278bf.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/5999d0cb-a3fb-4f2a-9c4b-5473bb43ec62.atom</atom:id>
+        <atom:published>2010-10-05T14:21:51.801+01:00</atom:published>
+        <atom:updated>2010-10-05T14:21:51.801+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file f8c795b9-4d05-42ba-8081-54d392cf8c19</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/5999d0cb-a3fb-4f2a-9c4b-5473bb43ec62.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/5999d0cb-a3fb-4f2a-9c4b-5473bb43ec62.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/f8c795b9-4d05-42ba-8081-54d392cf8c19.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/5999d0cb-a3fb-4f2a-9c4b-5473bb43ec62.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/928e48b5-3fd8-4522-abb3-98161b58fb59.atom</atom:id>
+        <atom:published>2010-10-05T14:20:26.459+01:00</atom:published>
+        <atom:updated>2010-10-05T14:20:26.459+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 85a1b23f-4b48-437f-b114-82dcf548e1b9</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/928e48b5-3fd8-4522-abb3-98161b58fb59.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/928e48b5-3fd8-4522-abb3-98161b58fb59.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/85a1b23f-4b48-437f-b114-82dcf548e1b9.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/928e48b5-3fd8-4522-abb3-98161b58fb59.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/d41c5852-7613-400f-bb4a-8ec78e7b195f.atom</atom:id>
+        <atom:published>2010-10-05T14:19:25.926+01:00</atom:published>
+        <atom:updated>2010-10-05T14:19:25.926+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 35dcc14f-6743-44d4-8a63-eb9ff28bf5a3</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/d41c5852-7613-400f-bb4a-8ec78e7b195f.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/d41c5852-7613-400f-bb4a-8ec78e7b195f.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/35dcc14f-6743-44d4-8a63-eb9ff28bf5a3.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/d41c5852-7613-400f-bb4a-8ec78e7b195f.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/29885089-3995-442d-9490-19a11c46681e.atom</atom:id>
+        <atom:published>2010-10-05T14:14:57.934+01:00</atom:published>
+        <atom:updated>2010-10-05T14:14:57.934+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 463d06a5-6bcc-4044-8197-dfa1f87b3d3f</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/29885089-3995-442d-9490-19a11c46681e.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/29885089-3995-442d-9490-19a11c46681e.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/463d06a5-6bcc-4044-8197-dfa1f87b3d3f.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/29885089-3995-442d-9490-19a11c46681e.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/53673934-5590-4e73-b66b-f3ac217b0ca2.atom</atom:id>
+        <atom:published>2010-10-05T14:14:17.942+01:00</atom:published>
+        <atom:updated>2010-10-05T14:14:17.942+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file deabe188-f4fd-47e8-874e-e8bcce62493a</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/53673934-5590-4e73-b66b-f3ac217b0ca2.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/53673934-5590-4e73-b66b-f3ac217b0ca2.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/deabe188-f4fd-47e8-874e-e8bcce62493a.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/53673934-5590-4e73-b66b-f3ac217b0ca2.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/c137d955-477d-43f2-94b4-36b648184ad4.atom</atom:id>
+        <atom:published>2010-10-05T14:13:35.304+01:00</atom:published>
+        <atom:updated>2010-10-05T14:13:35.304+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file 58470f9f-c1c4-48b9-95e6-c509c19938d9</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/c137d955-477d-43f2-94b4-36b648184ad4.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/c137d955-477d-43f2-94b4-36b648184ad4.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/58470f9f-c1c4-48b9-95e6-c509c19938d9.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/c137d955-477d-43f2-94b4-36b648184ad4.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+    <atom:entry>
+        <atom:id>http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/9a5574ed-8c48-4f34-9362-afe847d9ea21.atom</atom:id>
+        <atom:published>2010-10-05T14:12:29.118+01:00</atom:published>
+        <atom:updated>2010-10-05T14:12:29.118+01:00</atom:updated>
+        <atom:author>
+            <atom:email>pdr@example.org</atom:email>
+        </atom:author>
+        <atom:title type="text">Personal Data Review of file dce92fd2-2528-4636-aba5-d3bbfa892bcd</atom:title>
+        <atom:summary type="text"/>
+        <atom:content type="application/vnd.chassis-manta+xml">
+            <review>
+                <outcome>pass</outcome>
+            </review>
+        </atom:content>
+        <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/9a5574ed-8c48-4f34-9362-afe847d9ea21.atom"/>
+        <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8089/atomscraper/testdata/reviews/personal-data/KHDXJ/9a5574ed-8c48-4f34-9362-afe847d9ea21.atom"/>
+        <atom:link rel="http://www.cggh.org/2010/chassis/terms/reviewSubject" href="http://localhost:8089/atomscraper/testdata/media/submitted/KHDXJ/dce92fd2-2528-4636-aba5-d3bbfa892bcd.atom" type="application/atom+xml"/>
+        <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/reviews/personal-data/KHDXJ/9a5574ed-8c48-4f34-9362-afe847d9ea21.atom" type="application/atom+xml;type=entry"/>
+    </atom:entry>
+</atom:feed>
