@@ -297,6 +297,11 @@ http://sourceforge.net/mailarchive/forum.php?forum=melati-users
      <version>6.1.10</version>
       <configuration>
         <contextPath>/</contextPath>
+        <connectors>
+        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+        <port>8080</port>
+        </connector>
+        </connectors>
         <scanIntervalSeconds>3</scanIntervalSeconds>
      </configuration>
     </plugin>
