@@ -1,8 +1,8 @@
 #if(!$melati.Object) #begin  
 No object in context 
 #end #else #begin 
-#set $melati.Response.ContentType="text/csv" 
-$melati.Response.addHeader("Content-Disposition", "attachment;filename=flat.csv") #end
+#set $melati.Response.ContentType="text/csv" ##$melati.Response.addHeader("Content-Disposition", "attachment;filename=flat.csv") 
+#end
 #foreach $field in $flattenedValues #begin
 "$admin.csvEscaped($field.Name)",#end
 
