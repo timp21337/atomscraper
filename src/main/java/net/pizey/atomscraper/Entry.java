@@ -35,7 +35,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Get and persist an entry.
+ * Get and persist an Atom entry.
  * @author timp
  * 
  */
@@ -138,10 +138,10 @@ public class Entry extends AtomscraperServlet {
     setAttributes(p, element);
     setValues(database, p, element);
     if (p.getTable().getName().equals("atom_link")) {
-      if (p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/studyInfo")
-          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia")
-          || p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/curatedMedia")
-          ){
+      if (p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/studyInfo")|| 
+          p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/submittedMedia") ||
+          p.getField("rel").getCookedString().equals("http://www.cggh.org/2010/chassis/terms/curatedMedia")
+      ){
         addChild(p, parseEntry(database, p.getField("href").getCookedString()));
       } else {
         System.err.println("Ignoring rel" +p.getField("rel").getCookedString());
