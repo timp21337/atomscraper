@@ -10,8 +10,8 @@
   <url>http://www.paneris.net/atomscraper</url>
 
   <ciManagement>
-    <system>Hudson</system>
-    <url>http://hudson.paneris.net/</url>
+    <system>Jenkins</system>
+    <url>http://jenkins.paneris.net/</url>
   </ciManagement>
 
   <scm>
@@ -305,7 +305,7 @@ http://sourceforge.net/mailarchive/forum.php?forum=melati-users
         <contextPath>/</contextPath>
         <connectors>
         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-        <port>8080</port>
+        <port>8089</port>
         </connector>
         </connectors>
         <scanIntervalSeconds>3</scanIntervalSeconds>
@@ -313,27 +313,7 @@ http://sourceforge.net/mailarchive/forum.php?forum=melati-users
     </plugin>
    </plugins>
   </build>
-  <reporting>
-   <plugins>
-    <plugin>
-     <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-project-info-reports-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>taglist-maven-plugin</artifactId>
-        <configuration>
-         <tags>
-          <tag>TODO</tag>
-          <tag>FIXME</tag>
-          <tag>@deprecated</tag>
-          <tag>HACK</tag>
-          <tag>NOTE</tag>
-         </tags>
-        </configuration>
-      </plugin>
-   </plugins>
-  </reporting>
+
   <distributionManagement>
     <repository>
       <id>melati</id>
