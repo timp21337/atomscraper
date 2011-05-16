@@ -89,9 +89,11 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
   }
   
   public void testEntrySchlurp() {
-     assertTrue(schlurp("/Login/atomscraper?continuationURL=" + 
+     assertEquals("\"atom_entry.1.atom_id\"", 
+         schlurp("/Login/atomscraper?continuationURL=" + 
          "/" + contextName + (contextName == "" ? "" : "/") + "Entry/Flat?uri=http://localhost:" + 
-       getActualPort() + "/" + contextName + (contextName == "" ? "" : "/") + "testdata/studies/KHDXJ.atom").startsWith("\"atom_entry.1.atom_id"));
+       getActualPort() + "/" + contextName + (contextName == "" ? "" : "/") + "testdata/studies/KHDXJ.atom").substring(0, 22)
+     );
   }
 
 
@@ -103,7 +105,9 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
     checkCheckbox("rememberme");
     //setScriptingEnabled(true);
     submit("action");
-    return getPageSource();
+    String pageSource = getPageSource();
+    System.err.println(pageSource);
+    return pageSource;
   }
   
   public void testWalker() { 
