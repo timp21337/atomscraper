@@ -1,5 +1,5 @@
 <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
-    <atom:id>http://localhost:8080/atomscraper/testdata/studies/KHDXJ.xml</atom:id>
+    <atom:id>testdata/studies/KHDXJ.xml</atom:id>
     <atom:published>2010-10-05T06:25:47.197+01:00</atom:published>
     <atom:updated>2010-10-05T06:25:47.197+01:00</atom:updated>
     <atom:author>
@@ -39,7 +39,7 @@
     <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, PUT, DELETE" rel="self" type="application/atom+xml;type=entry" href="KHDXJ.xml"/>
     <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, PUT, DELETE" rel="edit" type="application/atom+xml;type=entry" href="KHDXJ.xml"/>
     <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, PUT" rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/studies/KHDXJ.xml" type="application/atom+xml;type=entry"/>
-    <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET" rel="history" href="https://www.wwarn.org/repository/atombeat/history/studies/KHDXJ.xml" type="application/atom+xml;type=feed"/>
+    <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET" rel="history" href="testdata/history/studies/KHDXJ.xml" type="application/atom+xml;type=feed"/>
     <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, PUT" rel="http://www.cggh.org/2010/chassis/terms/submittedMedia" href="testdata/media/submitted/KHDXJ" type="application/atom+xml;type=feed"/>
     <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, PUT, POST" rel="http://www.cggh.org/2010/chassis/terms/curatedMedia" href="testdata/media/curated/KHDXJ" type="application/atom+xml;type=feed"/>
     <atom:link xmlns:atombeat="http://purl.org/atombeat/xmlns" atombeat:allow="GET, PUT, POST" rel="http://www.cggh.org/2010/chassis/terms/derivations" href="testdata/derivations/KHDXJ" type="application/atom+xml;type=feed"/>

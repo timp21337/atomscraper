@@ -481,9 +481,9 @@
         <atom:updated>2010-10-08T05:58:04.28+01:00</atom:updated>
         <atom:summary/>
     </ar:comment>
-    <atom:link rel="self" type="application/atom+xml;type=entry" href="http://localhost:8080/atomscraper/testdata/study-info/KHDXJ.atom"/>
-    <atom:link rel="edit" type="application/atom+xml;type=entry" href="http://localhost:8080/atomscraper/testdata/study-info/KHDXJ.atom"/>
-    <atom:link rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="http://localhost:8080/atomscraper/testdata/studies/KHDXJ.atom" type="application/atom+xml;type=entry"/>
+    <atom:link rel="self" type="application/atom+xml;type=entry" href="testdata/study-info/KHDXJ.xml"/>
+    <atom:link rel="edit" type="application/atom+xml;type=entry" href="testdata/study-info/KHDXJ.xml"/>
+    <atom:link rel="http://www.cggh.org/2010/chassis/terms/originStudy" href="testdata/studies/KHDXJ.xml" type="application/atom+xml;type=entry"/>
     <atom:link rel="http://purl.org/atombeat/rel/security-descriptor" href="https://www.wwarn.org/repository/atombeat/security/study-info/KHDXJ.atom" type="application/atom+xml;type=entry"/>
-    <atom:link rel="history" href="https://www.wwarn.org/repository/atombeat/history/study-info/KHDXJ.atom" type="application/atom+xml;type=feed"/>
+    <atom:link rel="history" href="testdata/history/study-info/KHDXJ.xml" type="application/atom+xml;type=feed"/>
 </atom:entry>

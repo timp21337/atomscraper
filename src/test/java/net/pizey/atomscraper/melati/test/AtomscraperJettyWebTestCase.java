@@ -22,7 +22,7 @@ import org.melati.JettyWebTestCase;
  */
 public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
 
-  private int unlikelyPortNo = 8080;
+  private int unlikelyPortNo = 8089;
   
   public AtomscraperJettyWebTestCase(String name) {
     super(name);
@@ -73,8 +73,8 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
     assertTextPresent("Admin");
   }
   public void testTestData() {
-    beginAt("/testdata/study-info.xml");
-    assertTextPresent("Study info - why no title? ");
+    beginAt("/testdata/study-info/KHDXJ");
+    assertTextPresent("Mae Sot  North-Western THAILAND");
   }
   
   public void testTree() { 
@@ -92,7 +92,7 @@ public class AtomscraperJettyWebTestCase extends JettyWebTestCase {
      assertEquals("\"atom_entry.1.atom_id\"", 
          schlurp("/Login/atomscraper?continuationURL=" + 
          "/" + contextName + (contextName == "" ? "" : "/") + "Entry/Flat?uri=http://localhost:" + 
-       getActualPort() + "/" + contextName + (contextName == "" ? "" : "/") + "testdata/studies/KHDXJ.atom").substring(0, 22)
+       getActualPort() + "/" + contextName + (contextName == "" ? "" : "/") + "testdata/studies/KHDXJ").substring(0, 22)
      );
   }
 
