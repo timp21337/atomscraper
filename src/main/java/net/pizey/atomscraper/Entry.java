@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.cggh.casutils.CasProtectedResourceDownloader;
+import org.cggh.casutils.CasProtectedResourceDownloaderFactory;
 import org.melati.Melati;
 import org.melati.PoemContext;
 import org.melati.admin.AdminUtils;
@@ -108,8 +109,9 @@ public class Entry extends AtomscraperServlet {
 
   private Persistent parseEntry(Database database, String uri) throws Exception {
 
-    if (uri.startsWith("http://cloud1.cggh.org/repository")) 
-      uri = CasProtectedResourceDownloader.download(uri);
+    CasProtectedResourceDownloader downloader = CasProtectedResourceDownloaderFactory.getCasProtectedResourceDownloader(uri);
+    if (downloader!= null) 
+      uri = downloader.download(uri);
     System.err.println("Downloading " + uri);
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     documentBuilderFactory.setIgnoringComments(true);
